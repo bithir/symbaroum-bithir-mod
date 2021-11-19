@@ -1,6 +1,6 @@
 # How to use this module
 
-# Symbaroum Bithir Module
+# Symbaroum Bithir Mods
 
 Abilities, traits and other expanded functions for the Symbaroum system - can be used as example.
 
