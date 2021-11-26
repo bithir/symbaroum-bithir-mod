@@ -6,7 +6,7 @@ Abilities, traits and other expanded functions for the Symbaroum system - can be
 
 ## Changelog
 ### Release 0.4
-- [x] #8 
+- [x] https://github.com/bithir/symbaroum-bithir-mod/issues/8
 - [x] #7 
 - [x] #6 
 
