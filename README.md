@@ -6,9 +6,9 @@ Abilities, traits and other expanded functions for the Symbaroum system - can be
 
 ## Changelog
 ### Release 0.4
-- [x] #8
-- [x] #7
-- [x] #6
+- [x] #8 
+- [x] #7 
+- [x] #6 
 
 ### 0.3 First actual successful build
 ### 0.2 Testing builds
