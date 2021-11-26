@@ -35,6 +35,15 @@
       "path": "languages/en.json"
     }
   ],
+  "packs": [
+    {
+      "name": "en-abilities",
+      "label": "EN - Bithir's Mods Abilities",
+      "system": "symbaroum",
+      "path": "./packs/enbithmods.db",
+      "entity": "Item"
+    }
+  ],
   "url": "This is auto replaced",
   "manifest": "This is auto replaced",
   "download": "This is auto replaced"
