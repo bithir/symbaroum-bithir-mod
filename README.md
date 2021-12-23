@@ -5,6 +5,8 @@
 Abilities, traits and other expanded functions for the Symbaroum system - can be used as example.
 
 ## Changelog
+### Release 0.5
+- [x] Updated with compatibility to v9
 ### Release 0.4
 - [x] [Restructure Ability and by extension all other items](https://github.com/bithir/symbaroum-bithir-mod/issues/8)
 - [x] [Change pause text to "Davokar Sleeps"](https://github.com/bithir/symbaroum-bithir-mod/issues/7)
