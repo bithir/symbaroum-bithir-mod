@@ -1,5 +1,5 @@
 
-export function getItemModifierUncannycoordination(combatMods, armors, weapons, mysticPowers) {
+export function getItemModifierUncannycoordination(combatMods, armors, weapons, abilities) {
     let lvl = this.getLevel();
     if(lvl.level == 0) return;        
     for(let i = 0; i < weapons.length; i++)
