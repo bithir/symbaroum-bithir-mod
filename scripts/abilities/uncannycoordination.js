@@ -4,7 +4,7 @@ export function getItemModifierUncannycoordination(combatMods, armors, weapons, 
     if(lvl.level == 0) return;        
     for(let i = 0; i < weapons.length; i++)
     {
-        if(weapons[i].data.data.qualities.deepImpact) {
+        if(weapons[i].system.qualities.deepImpact) {
             let base = this._getBaseFormat();
             base.type = game.symbaroum.config.DAM_MOD;
             base.value = "+1";
@@ -14,7 +14,7 @@ export function getItemModifierUncannycoordination(combatMods, armors, weapons, 
             }];
             combatMods.weapons[weapons[i].id].package[0].member.push(base);                 
         }
-        if(weapons[i].data.data.qualities.precise) {
+        if(weapons[i].system.qualities.precise) {
             // Add 1
             let base = this._getBaseFormat();
             base.type = game.symbaroum.config.TYPE_ROLL_MOD;
@@ -27,10 +27,10 @@ export function getItemModifierUncannycoordination(combatMods, armors, weapons, 
 
     for(let i = 0; i < armors.length; i++)
     {
-        if(armors[i].data.isStackableArmor || armors[i].data.isNoArmor ) {
+        if(armors[i].system.isStackableArmor || armors[i].isNoArmor ) {
             continue;
         }
-        if(armors[i].data.data.qualities.reinforced) {
+        if(armors[i].system.qualities.reinforced) {
             let base = this._getBaseFormat();
             base.type = game.symbaroum.config.DAM_FIXED;
             base.alternatives = [{
@@ -39,7 +39,7 @@ export function getItemModifierUncannycoordination(combatMods, armors, weapons, 
             }];
             combatMods.armors[armors[i].id].protectionChoices.push(base);
         }
-        if(armors[i].data.data.qualities.flexible) {
+        if(armors[i].system.qualities.flexible) {
             let base = this._getBaseFormat();
             base.modifier = 1;
             combatMods.armors[armors[i].id].defenseModifiers.push(base);
