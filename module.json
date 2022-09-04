@@ -1,24 +1,34 @@
 {
-  "name": "symbaroum-bithir-mod",
+  "id":"symbaroum-bithir-mod",
   "title": "Bithir's Symbaroum Mods",
   "description": "Bithir's mods for Symbaroum",
   "version": "This is auto replaced",
   "library": "false",
   "manifestPlusVersion": "1.0.0",
-  "minimumCoreVersion": "0.8.9",
-  "compatibleCoreVersion": "9",
+  "minimumCoreVersion": 10,
+  "compatibleCoreVersion": 10,
+  "compatibility": {
+    "minimum": 10,
+    "verified": "10.278",
+    "maximum": 10
+  },
   "authors": [
     {
       "name": "Peter Norell",
       "url": "https://github.com/bithir"
     }
   ],
-  "dependencies": [
-
-  ],
-  "conflicts": [
-    
-  ],
+  "relationships": {
+    "systems": [{
+      "id": "symbaroum",
+      "type": "system",
+      "manifest": "https://github.com/pwatson100/symbaroum/releases/latest/download/system.json",
+      "compatibility": {
+        "minimum": "4.0.0",
+        "verified": "4.0.0"
+      }
+    }]
+  },
   "esmodules": [
     "/scripts/module.js"
   ],
@@ -41,7 +51,7 @@
       "label": "EN - Bithir's Mods Abilities",
       "system": "symbaroum",
       "path": "./packs/enbithmods.db",
-      "entity": "Item"
+      "type": "Item"
     }
   ],
   "url": "This is auto replaced",
