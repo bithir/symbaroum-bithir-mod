@@ -9,7 +9,7 @@
   "compatibleCoreVersion": 10,
   "compatibility": {
     "minimum": 10,
-    "verified": "10.284",
+    "verified": 10,
     "maximum": 10
   },
   "authors": [
@@ -33,7 +33,6 @@
     "/scripts/module.js"
   ],
   "scripts": [
-    "/scripts/lib/lib.js"
   ],
   "styles": [
     "/css/common.css"
