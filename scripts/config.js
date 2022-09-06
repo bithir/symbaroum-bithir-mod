@@ -11,20 +11,39 @@ BITHIRMODCONF.resistanceLevels = [
 ];
 
 BITHIRMODCONF.abominationStatBlocks = [ { 
-    name: "Test block",
-    attributes: {
-        "accurate":10,
-        "cunning":10,
-        "discreet":10,
-        "persuasive":10,
-        "quick":10,
-        "resolute":10,
-        "strong":10,
-        "vigilant":10
+        name: "Test block",
+        attributes: {
+            "accurate":10,
+            "cunning":10,
+            "discreet":10,
+            "persuasive":10,
+            "quick":10,
+            "resolute":10,
+            "strong":10,
+            "vigilant":10
+        },
+        excludedAbilities: [],
+        includedAbilities: [],
     },
-    excludedAbilities: [],
-    includedAbilities: [],
-} ];
+    { 
+        name: "BlightBorn Aboar type",
+        attributes: {
+            "accurate":7,
+            "cunning":10,
+            "discreet":7,
+            "persuasive":5,
+            "quick":13,
+            "resolute":11,
+            "strong":15,
+            "vigilant":9
+        },
+        excludedAbilities: [],
+        includedAbilities: [ 
+            { reference: "ironfist", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "robust", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+        ]
+    }    
+];
 
 BITHIRMODCONF.abominationAbilities = {
     core: [
