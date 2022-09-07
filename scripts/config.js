@@ -42,25 +42,63 @@ BITHIRMODCONF.abominationStatBlocks = [ {
             { reference: "ironfist", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
             { reference: "robust", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
         ]
+    },
+    { 
+        name: "Primal beast type",
+        attributes: {
+            "accurate":13,
+            "cunning":9,
+            "discreet":5,
+            "persuasive":7,
+            "quick":11,
+            "resolute":10,
+            "strong":15,
+            "vigilant":10
+        },
+        excludedAbilities: [],
+        includedAbilities: [ 
+            { reference: "ironfist", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "robust", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "naturalwarrior", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "berserker", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "regeneration", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+        ]
     }    
 ];
 
 BITHIRMODCONF.abominationAbilities = {
-    core: [
-        { reference: "armored", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "robust", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "ironfist", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "naturalweapon", forcedAbilities: [], excludedAbilities: [], includedAbilities: []}
-    ],
-    common: [
-        { reference: "acidblood", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "acidattack", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "berserk", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "bloodlust", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "corruptingattack", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "regeneration", forcedAbilities: [], excludedAbilities: [], includedAbilities: []}
-    ],
-    unusual: [
+    core: {
+        weight: 0,
+        abilityRef: [
+            { reference: "armored", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "robust", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "ironfist", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "naturalweapon", forcedAbilities: [], excludedAbilities: [], includedAbilities: []}
+        ]
+    },
+    rare: {
+        weight: 1,
+        abilityRef: [
+            { reference: "colossal", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "companions", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "corruptionhoarder", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},        
+            { reference: "deadlybreath", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "deathstruggle", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "devour", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "infestation", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "infectious", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "invisible", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "metamorphosis", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "mysticalresistance", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "rampage", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "summoner", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "tunneler", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+            { reference: "wrecker", forcedAbilities: [], excludedAbilities: [], includedAbilities: []}
+        ]
+    },
+    unusual: {
+        weight: 10,
+        abilityRef: [
         { reference: "carapace", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
         { reference: "crushingembrace", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
         { reference: "harmfulaura", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},        
@@ -68,25 +106,25 @@ BITHIRMODCONF.abominationAbilities = {
         { reference: "prehensileclaws", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
         { reference: "sturdy", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
 
-    ],
-    rare: [
-        { reference: "colossal", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "companions", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "corruptionhoarder", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},        
-        { reference: "deadlybreath", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "deathstruggle", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "devour", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "infestation", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "infectious", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "invisible", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "metamorphosis", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "mysticalresistance", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "rampage", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "summoner", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "tunneler", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
-        { reference: "wrecker", forcedAbilities: [], excludedAbilities: [], includedAbilities: []}
-    ]
+    ]},
+    common: {
+        weight: 100,
+        abilityRef: [
+        { reference: "acidblood", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+        { reference: "acidattack", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+        { reference: "berserk", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+        { reference: "bloodlust", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+        { reference: "corruptingattack", forcedAbilities: [], excludedAbilities: [], includedAbilities: []},
+        { reference: "regeneration", forcedAbilities: [], excludedAbilities: [], includedAbilities: []}        
+    ]}
 };
+
+BITHIRMODCONF.abominationAdjectives = [
+    "Bloodcurdling","Gory","Macabre","Phantasm","Unsettling","Ominous","Otherworldly",
+    "Supernatural","Eerie","Chilling","Mysterious","Puzzling","Spectral","Fearsome",
+    "Unusual","Uncanny","Unearthly","Bizarre","Creepy","Spookish","Haunting","Alarming",
+    "Sinister","Wicked","Petrifying","Haunted","Menacing","Ghastly","Twisted","Looming"
+];
 
 BITHIRMODCONF.abominationDescriptions = {};
 BITHIRMODCONF.abominationShadow = {};

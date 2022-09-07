@@ -50,8 +50,13 @@ export class BithirMacros
         const config = game.bithirmod.config;
         game.symbaroum.log(`Making a ${xpLevel.name} abomination starting at ${xpLevel.abilities} abilities`);
         // Create what will become monster actor
+        
+        // Randomise stat block
+        const statBlock = config.abominationStatBlocks[Math.floor(Math.random()*config.abominationStatBlocks.length)];
+        game.symbaroum.log(`Picked stat block of ${statBlock.name}`,statBlock);
+
         const actorDetails = {
-            name: "A name",
+            name: `${config.abominationAdjectives[Math.floor(Math.random()*config.abominationAdjectives.length)]} ${statBlock.name}`,
             type: "monster",
             folder: null,
             sort: 12000,
@@ -61,35 +66,38 @@ export class BithirMacros
             flags: {}        
         }
 
-        // Randomise stat block
-        const statBlock = config.abominationStatBlocks[Math.floor(Math.random()*config.abominationStatBlocks.length)];
-        game.symbaroum.log(`Picked stat block of ${statBlock.name}`,statBlock);
         this.setAttributes(actorDetails, statBlock);
         const roll = await new Roll(xpLevel.abilities).evaluate({async: true});
-        let maxAbilityCount = roll.total;
-        console.log(maxAbilityCount);
+        let startCoreCount = roll.total;
+        game.symbaroum.log(startCoreCount);
         let currentAbilityCount = 0;
         let actor = await Actor.create(actorDetails);
         // Estimate how many starting abilities we get from exp level
+
+        // Create a weighted list of abilities
+        let sumWeight = 0;        
+        // Sum up rarities, so that we know the whole span
+        // then we can decide the total random number range and select the correct one
         let actorItems = []; // This will contain all abilities & traits
 
         // Duplicate abilities so that we do not change them
         let abilities = duplicate(game.bithirmod.config.abominationAbilities);
-        abilities.core = abilities.core.filter( abilityKeep => { return !statBlock.excludedAbilities.includes(abilityKeep)})
-        abilities.core = abilities.core.concat( statBlock.includedAbilities );
+        abilities.core.abilityRef = abilities.core.abilityRef.filter( abilityKeep => { return !statBlock.excludedAbilities.includes(abilityKeep)})
+        abilities.core.abilityRef = abilities.core.abilityRef.concat( statBlock.includedAbilities );
         // So this is the pleatora of skills
-        game.symbaroum.log(abilities, `max ability count ${maxAbilityCount}`);
-
-        for(let i = 0; i < maxAbilityCount; i++) {
-            this.addAbility(actorItems, abilities.core[Math.floor(Math.random()*abilities.core.length)]);
+        game.symbaroum.log(abilities, `start ability count ${startCoreCount}`);
+        for(let i = 0; i < startCoreCount; i++) {
+            this.addAbility(actor, actorItems, abilities.core.abilityRef[Math.floor(Math.random()*abilities.core.abilityRef.length)]);
+            currentAbilityCount++;
         }
+        await actor.createEmbeddedDocuments("Item", actorItems);
 
         // Pick core abilities that are not excluded by the stat block & random levels (allow this to exceed )
 
 
         // Randomise abilities that are not excluded by the stat block, increase odds for those that are included
         // with that, until xp is exceeded, if same ability is picked, increase it (I -> II -> III)
-        await actor.createEmbeddedDocuments("Item", actorItems);
+        
 
         // total exp spent here would be actor.system.experience.spent - only known after adding abilities
         
@@ -99,8 +107,10 @@ export class BithirMacros
         actor.sheet.render(true);
     }
 
-    addAbility(actorItems, ability) {
-        game.symbaroum.log(`Looking for ability[${ability.reference}]`);
+    addAbility(actor, actorItems, ability) {
+        // game.symbaroum.log(`Looking for ability[${ability.reference}]`);
+        // TODO: Check actor 
+
         // Should check if the ability is already present, and if so, just increase it one point
         let selectedAbility = actorItems.find(elem => elem.system.reference == ability.reference);
         
@@ -110,14 +120,15 @@ export class BithirMacros
             if(newAbility.length > 0) {
                 game.symbaroum.log("Retriveved from the item catalogue");
                 selectedAbility = duplicate(newAbility[0]);
-                let rnd = Math.floor(Math.random()*3);
+                let rnd = Math.floor(Math.random()*60);
     
-                foundry.utils.setProperty(selectedAbility, "system.master.isActive", rnd > 1);
-                foundry.utils.setProperty(selectedAbility, "system.adept.isActive", rnd > 0);
+                foundry.utils.setProperty(selectedAbility, "system.master.isActive", rnd > 50);
+                foundry.utils.setProperty(selectedAbility, "system.adept.isActive", rnd > 30);
                 foundry.utils.setProperty(selectedAbility, "system.novice.isActive", true);
                 actorItems.push( selectedAbility);
             }
         } else {
+            // upgrade the ability
             if(foundry.utils.getProperty(selectedAbility,"system.adept.isActive") ) {
                 foundry.utils.setProperty(selectedAbility, "system.master.isActive", true);
             }
@@ -126,14 +137,14 @@ export class BithirMacros
             }
             game.symbaroum.log("Found existing one");
         }
-        console.log(selectedAbility);
+        // console.log(selectedAbility);
     }
 
     setAttributes(actorDetails, statBlock) {
-
         // setProperty(newValues, "data.health.corruption.permanent", parseInt(extractData(expectedData,corruptionPattern))); 
         for(let stat in statBlock.attributes) {
-            foundry.utils.setProperty(actorDetails, `system.attributes.${stat}.value`), statBlock.attributes[stat];
+            // game.symbaroum.log(`${actorDetails.name} setting attribute[${stat}] to value[${statBlock.attributes[stat]}]`);
+            foundry.utils.setProperty(actorDetails, `system.attributes.${stat}.value`, statBlock.attributes[stat]);
         }
     }
 }
