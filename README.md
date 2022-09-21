@@ -5,6 +5,8 @@
 Abilities, traits and other expanded functions for the Symbaroum system - can be used as example.
 
 ## Changelog
+### Release 0.6
+- [x] Compatibility with v10
 ### Release 0.5
 - [x] Updated with compatibility to v9
 ### Release 0.4
