@@ -5,6 +5,8 @@
 Abilities, traits and other expanded functions for the Symbaroum system - can be used as example.
 
 ## Changelog
+### Release 1.3
+- [x] Initial creation of randomised Abominations [wip]
 ### Release 0.6
 - [x] Compatibility with v10
 ### Release 0.5
