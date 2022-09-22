@@ -10,7 +10,11 @@ Hooks.once('init', async function() {
     CONFIG.Item.documentClass.prototype.abilitySetupBerserkerv2 = abilitySetupBerserkerv2;
 
     game.symbaroum.config.scriptedAbilities.push("berserkerv2");
-
+    CONFIG.statusEffects.push({
+        id: "berserkerv2",
+        label: "ABILITY_LABEL.BERSERKER",
+        icon: "systems/symbaroum/asset/image/berserker.svg"
+      });
 });
 
 
