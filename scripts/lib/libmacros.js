@@ -97,6 +97,11 @@ export class BithirMacros
 
         // Randomise abilities that are not excluded by the stat block, increase odds for those that are included
         // with that, until xp is exceeded, if same ability is picked, increase it (I -> II -> III)
+
+        // 1 chance in 111 for a rare ability
+        // 10 chances in 111 for a unusual ability
+        // 100 chances in 111 for a common ability
+        
         
 
         // total exp spent here would be actor.system.experience.spent - only known after adding abilities
