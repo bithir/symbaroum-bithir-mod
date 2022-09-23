@@ -51,6 +51,13 @@
       "system": "symbaroum",
       "path": "./packs/enbithmods.db",
       "type": "Item"
+    },
+    {
+      "name": "en-macros",
+      "label": "EN - Bithir's Mods Macros",
+      "system": "symbaroum",
+      "path": "./packs/enbithmods-macros.db",
+      "type": "Macro"
     }
   ],
   "url": "This is auto replaced",
