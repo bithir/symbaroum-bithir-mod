@@ -14,7 +14,7 @@ Hooks.once('init', async function() {
         id: "berserkerv2",
         label: "ABILITY_LABEL.BERSERKER",
         icon: "systems/symbaroum/asset/image/berserker.svg"
-      });
+    });
 });
 
 
@@ -24,6 +24,6 @@ Hooks.once('ready', async function() {
     game.bithirmod = {
         config: BITHIRMODCONF,
         macros: new BithirMacros()
-    };    
+    };
     game.symbaroum.log("Module ready hook");
 });
