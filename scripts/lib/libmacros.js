@@ -258,4 +258,30 @@ export class BithirMacros
             return folder[0].id;
         }
     }
+
+    async thusSpoke() {
+        let jqxhr = $.getJSON( "modules/symbaroum-bithir-mod/data/aroaleta-verses.json", function(data) 
+        { 
+            console.log(data);
+            const keys = Object.keys(data);
+            const selectedKey = game.bithirmod.config.randomElement(keys);
+            const aroaletaText = game.bithirmod.config.randomElement(data[selectedKey]);
+            let template = `<blockquote style="border-left:0px" class="symbaroum-mod fancytextright">
+                <div style="display: flex;align-items: center;justify-content: center;"><span style="display:flex" class="symbaroum-mod fancyheader">&nbsp;</span></div>
+                <span class="symbaroum-mod"><h5 data-anchor="thus-spoke-aroaleta">THUS SPOKE AROALETA</h5></span>
+                <p class="symbaroum-mod fancytext">
+                    “${aroaletaText}”
+                </p>
+                <p class="symbaroum-mod fancytext">${selectedKey}</p>
+                <div style="display: flex;align-items: center;justify-content: center;"><span style="display:flex" class="symbaroum-mod fancyheader">&nbsp;</span></div>
+            </blockquote>`;
+            ChatMessage.create({
+                alias: "Aroelata",
+                content: template
+            });
+        })
+        .fail(function(data) {
+            game.symbaroum.error("Could not retreive Aroaleta test. Message:"+JSON.stringify(data));
+        });
+    }
 }
