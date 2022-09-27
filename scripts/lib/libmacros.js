@@ -3,64 +3,70 @@ export class BithirMacros
 {
     async generateAbominationMacro()
     {
-        const config = game.bithirmod.config;
-        // Capture exp level (from drop down)
-        let expLevel = '';
-        for(let resistLv of config.resistanceLevels) {
-            expLevel += `<option value="${resistLv.name}">${resistLv.name}</option>`;
-        }
-        let dialog_content = `  
-        <div class="form-group">
-        <h2>Select abomination resistance level</h2>
-        <br />
-        <div style="flex-basis: auto;flex-direction: row;display: flex;">
-        <div style="width:10em;min-width:10em;"><select id="expLevel" name="expLevel">${expLevel}</select></div>
-        </div><br/>
-        </div>`;
-        const x = new Dialog({
-            content : dialog_content,
-            buttons : 
-            {
-            Ok : { label : `Ok`, callback : async (html)=> {
-                    const expLevelName = html.find('#expLevel')[0].value;
-                    const selectedExpLevel = config.resistanceLevels.filter( resistLv => { 
-                        return resistLv.name == expLevelName;
-                    });
-                    if(selectedExpLevel.length > 0) {
-                        await this.generateAbomination(selectedExpLevel[0]);
-                    } else {
-                        // Panic - someone clicked the Ok button, but somehow nothing matched in the selection drop down
-                        // Should technically be impossible, so I am just going to ignore it for now
-                    }
-                }
-            },
-            Cancel : {label : `Cancel`}
+        let self = this;
+        let jqxhr = $.getJSON( "modules/symbaroum-bithir-mod/data/abomination-generator.json", function(abominationConfig) 
+        { 
+            console.log(abominationConfig);
+            // Capture exp level (from drop down)
+            let expLevel = '';
+            for(let resistLv of abominationConfig.resistanceLevels) {
+                expLevel += `<option value="${resistLv.name}">${resistLv.name}</option>`;
             }
+            let dialog_content = `  
+            <div class="form-group">
+            <h2>Select abomination resistance level</h2>
+            <br />
+            <div style="flex-basis: auto;flex-direction: row;display: flex;">
+            <div style="width:10em;min-width:10em;"><select id="expLevel" name="expLevel">${expLevel}</select></div>
+            </div><br/>
+            </div>`;
+            const x = new Dialog({
+                content : dialog_content,
+                buttons : 
+                {
+                Ok : { label : `Ok`, callback : async (html)=> {
+                        const expLevelName = html.find('#expLevel')[0].value;
+                        const selectedExpLevel = abominationConfig.resistanceLevels.find( resistLv => { 
+                            return resistLv.name == expLevelName;
+                        });
+                        if(selectedExpLevel) {
+                            await self.generateAbomination(abominationConfig, selectedExpLevel);
+                        } else {
+                            // Panic - someone clicked the Ok button, but somehow nothing matched in the selection drop down
+                            // Should technically be impossible, so I am just going to ignore it for now
+                        }
+                    }
+                },
+                Cancel : {label : `Cancel`}
+                }
+            });
+            
+            x.options.width = 200;
+            x.position.width = 300;
+            
+            x.render(true);
+        })
+        .fail(function(data) {
+            game.symbaroum.error("Could not retreive Aroaleta text. Message:"+JSON.stringify(data));
         });
-        
-        x.options.width = 200;
-        x.position.width = 300;
-        
-        x.render(true);
-    
 
     }
 
-    async generateAbomination(xpLevel) {        
+    async generateAbomination(abominationConfig, xpLevel) {        
         const config = game.bithirmod.config;
         const folderId = await this.getFolderID("Generated Abominations");
-        const {files} = await FilePicker.browse("data", config.midjourneyNonPaidDir);        
+        const {files} = await FilePicker.browse("data", abominationConfig.midjourneyNonPaidDir);        
     
 
         game.symbaroum.log(`Making a ${xpLevel.name} abomination starting at ${xpLevel.abilities} abilities`);
         // Create what will become monster actor
         
         // Randomise stat block
-        const statBlock = config.randomElement(config.abominationStatBlocks); 
+        const statBlock = config.randomElement(abominationConfig.abominationStatBlocks); 
         game.symbaroum.log(`Picked stat block of ${statBlock.name}`,statBlock);
 
         const actorDetails = {
-            name: this.expandDescription(`{adjective} ${statBlock.name}`).capitalize(),
+            name: this.expandDescription(abominationConfig, `{adjective} ${statBlock.name}`).capitalize(),
             type: "monster",
             img: config.randomElement(files),
             folder: null,
@@ -72,7 +78,7 @@ export class BithirMacros
             flags: {}        
         }
         foundry.utils.setProperty(actorDetails, "system.bio.race", "abomination");
-        foundry.utils.setProperty(actorDetails, "system.bio.shadow",  this.generateShadow().capitalize());
+        foundry.utils.setProperty(actorDetails, "system.bio.shadow",  this.generateShadow(abominationConfig).capitalize());
         foundry.utils.setProperty(actorDetails, "system.bio.appearance", ""); 
 
         this.setAttributes(actorDetails, statBlock);
@@ -83,7 +89,7 @@ export class BithirMacros
 
         let actorItems = []; // This will contain all abilities & traits
         // Duplicate abilities so that we do not change the normal configuration
-        let abilities = duplicate(game.bithirmod.config.abominationAbilities);
+        let abilities = duplicate(abominationConfig.abominationAbilities);
         // Create a weighted list of abilities
         let sumWeight = 0;        
         // Sum up rarities, so that we know the whole span
@@ -131,14 +137,14 @@ export class BithirMacros
         if(unarmedWeapons.length > 0) {
             const weapon = duplicate(config.randomElement(unarmedWeapons));
             foundry.utils.setProperty(weapon, "system.state", "active");
-            foundry.utils.setProperty(weapon, "name", this.expandDescription(`{adjective} ${weapon.name}`).capitalize() );
+            foundry.utils.setProperty(weapon, "name", this.expandDescription(abominationConfig, `{adjective} ${weapon.name}`).capitalize() );
             actorItems.push(weapon);
         }
         const armorSkins = game.items.filter(element => element.system.isSkin);
         if(armorSkins.length > 0) {
             const armor = duplicate(config.randomElement(armorSkins));
             foundry.utils.setProperty(armor, "system.state", "active");
-            foundry.utils.setProperty(armor, "name", this.expandDescription(`{adjective} ${armor.name}`).capitalize() );
+            foundry.utils.setProperty(armor, "name", this.expandDescription(abominationConfig, `{adjective} ${armor.name}`).capitalize() );
             actorItems.push(armor);
         }
         const thoroughlycorrupt = game.items.filter(element => element.system.reference == "thoroughlycorrupt" );
@@ -228,8 +234,8 @@ export class BithirMacros
      * @param {*} str The string to expand from abomination descriptions (example "{color} smurf with {adjective} nose")
      * @returns The expanded description with random values
      */
-    expandDescription(str) {
-        const descs = game.bithirmod.config.abominationDescriptions;
+    expandDescription(abominationConfig, str) {
+        const descs = abominationConfig.abominationDescriptions;
 
         if(str == null) { return ""; }
 
@@ -240,8 +246,8 @@ export class BithirMacros
         return str;
     }
 
-    generateShadow() {
-        return this.expandDescription(game.bithirmod.config.randomElement(game.bithirmod.config.abominationShadows));
+    generateShadow(abominationConfig) {
+        return this.expandDescription(abominationConfig, game.bithirmod.config.randomElement(abominationConfig.abominationShadows));
 
     }
 
@@ -276,12 +282,12 @@ export class BithirMacros
                 <div style="display: flex;align-items: center;justify-content: center;"><span style="display:flex" class="symbaroum-mod fancyheader">&nbsp;</span></div>
             </blockquote>`;
             ChatMessage.create({
-                alias: "Aroelata",
+                speaker: { alias: "Aroelata" },
                 content: template
             });
         })
         .fail(function(data) {
-            game.symbaroum.error("Could not retreive Aroaleta test. Message:"+JSON.stringify(data));
+            game.symbaroum.error("Could not retreive Aroaleta text. Message:"+JSON.stringify(data));
         });
     }
 }

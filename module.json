@@ -2,7 +2,7 @@
   "id":"symbaroum-bithir-mod",
   "title": "Bithir's Symbaroum Mods",
   "description": "Bithir's mods for Symbaroum",
-  "version": "This is auto replaced",
+  "version": "1.0.0",
   "library": "false",
   "manifestPlusVersion": "1.0.0",
   "minimumCoreVersion": 10,
@@ -46,18 +46,12 @@
   ],
   "packs": [
     {
-      "name": "en-abilities",
-      "label": "EN - Bithir's Mods Abilities",
+      "name": "bithir-mods",
+      "label": "Bithir's mods",
       "system": "symbaroum",
-      "path": "./packs/enbithmods.db",
-      "type": "Item"
-    },
-    {
-      "name": "en-macros",
-      "label": "EN - Bithir's Mods Macros",
-      "system": "symbaroum",
-      "path": "./packs/enbithmods-macros.db",
-      "type": "Macro"
+      "path": "packs/bithir-mods.db",
+      "type": "Adventure",
+      "module": "bithir-mods"
     }
   ],
   "url": "This is auto replaced",
