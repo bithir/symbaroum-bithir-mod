@@ -26,5 +26,5 @@ Abilities, traits and other expanded functions for the Symbaroum system - can be
 
 
 ### Credits
-Midjourney images used from the "Non-Paid Members License Terms"" - licence see https://midjourney.gitbook.io/docs/billing.
-Images subject to this licence are stored under assets
+Midjourney images used from the "Non-Paid Members License Terms"", i.e. Creative Commons Noncommercial 4.0 Attribution International License - license see https://midjourney.gitbook.io/docs/billing.
+Images subject to this license are stored under assets/midjourney
