@@ -1,5 +1,9 @@
 # How to use this module
 
+To install this module, copy the link below and paste into the module install dialogue in Foundry
+https://github.com/bithir/symbaroum-bithir-mod/releases/latest/download/module.json
+
+
 # Symbaroum Bithir Mods
 
 Abilities, traits and other expanded functions for the Symbaroum system - can be used as example.
