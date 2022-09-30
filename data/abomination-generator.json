@@ -22,6 +22,7 @@
             },
             "excludedAbilities": [],
             "includedAbilities": [ 
+                { "reference": "feint", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
                 { "reference": "ironfist", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
                 { "reference": "robust", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []}
             ]
@@ -63,6 +64,7 @@
                 { "reference": "ironfist", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []}           
             ],
             "includedAbilities": [ 
+                { "reference": "feint", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
                 { "reference": "backstab", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
                 { "reference": "naturalwarrior", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []}
             ]
@@ -109,7 +111,9 @@
                 { "reference": "ironfist", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []}          
             ],
             "includedAbilities": [ 
+                { "reference": "feint", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
                 { "reference": "armored", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+                { "reference": "backstab", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
                 { "reference": "piercingattack", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
                 { "reference": "poisonous", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
                 { "reference": "carapace", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []}
@@ -177,6 +181,7 @@
     
             ],
             "includedAbilities": [ 
+                { "reference": "acrobatics", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},            
                 { "reference": "ironfist", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},            
                 { "reference": "exceptionalattribute", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
                 { "reference": "naturalweapon", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},

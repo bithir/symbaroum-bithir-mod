@@ -2,6 +2,7 @@ import { BITHIRMODCONF } from './config.js';
 import { getItemModifierUncannycoordination } from './abilities/uncannycoordination.js';
 import { getItemModifierBerserkerv2, abilitySetupBerserkerv2 } from './abilities/berserk.js';
 import { BithirMacros } from './lib/libmacros.js';
+import { sendDevMessage } from './devmessage.js';
 
 const moduleId = 'symbaroum-bithir-mod';
 const adventurePack = `${moduleId}.bithir-mods`;
@@ -21,6 +22,13 @@ Hooks.once('init', async function() {
         default: '0',
     });
 
+    game.settings.register(moduleId, 'devMessageVersionNumber', {
+        name: 'Development message version',
+        scope: 'world',
+        config: false,
+        type: String,
+        default: '0',
+    });
 
     game.symbaroum.config.scriptedAbilities.push("berserkerv2");
     CONFIG.statusEffects.push({
@@ -39,6 +47,7 @@ Hooks.once('ready', async function() {
         macros: new BithirMacros()
     };
     ModuleImport();
+    sendDevMessage();
     game.symbaroum.log("Module ready hook");
 });
 
@@ -52,7 +61,7 @@ export async function ModuleImport() {
         game.symbaroum.log(`moduleVersion[${moduleVersion}] is not never than moduleVersion setting[${game.settings.get(moduleId, 'moduleVersion')}]`);
         return;
     }
-    
+
     const id = Hooks.on('importAdventure', (adventure, formData, created, updated) => {
         console.log('adventure',adventure,'formData',formData,'created',created,'updated',updated)
         if (adventure.name === adventureName) {
