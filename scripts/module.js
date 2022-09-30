@@ -48,7 +48,7 @@ Hooks.once('ready', async function() {
     };
     ModuleImport();
     sendDevMessage();
-    game.symbaroum.log("Module ready hook");
+    game.symbaroum.info(`Module[${moduleId}] ready hook complete`);
 });
 
 export async function ModuleImport() {
@@ -58,12 +58,12 @@ export async function ModuleImport() {
     //
     const moduleVersion = game.modules.get(moduleId)?.version;
     if(!foundry.utils.isNewerVersion(moduleVersion, game.settings.get(moduleId, 'moduleVersion') ) ) {
-        game.symbaroum.log(`moduleVersion[${moduleVersion}] is not never than moduleVersion setting[${game.settings.get(moduleId, 'moduleVersion')}]`);
+        game.symbaroum.info(`moduleVersion[${moduleVersion}] is not never than moduleVersion setting[${game.settings.get(moduleId, 'moduleVersion')}]`);
         return;
     }
 
     const id = Hooks.on('importAdventure', (adventure, formData, created, updated) => {
-        console.log('adventure',adventure,'formData',formData,'created',created,'updated',updated)
+        // console.log('adventure',adventure,'formData',formData,'created',created,'updated',updated)
         if (adventure.name === adventureName) {
             // game.symbaroum.log(`Removing hook[${id}]`);
             Hooks.off('importAdventure', id);
