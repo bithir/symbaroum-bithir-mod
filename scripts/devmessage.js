@@ -2,9 +2,9 @@
 export function sendDevMessage() 
 {
     if( game.user.isGM ) {
-        let jqxhr = $.getJSON( "https://raw.githubusercontent.com/bithir/symbaroum-bithir-mods/master/msgdata/data.json", function(data) 
+        let jqxhr = $.getJSON( "https://raw.githubusercontent.com/bithir/symbaroum-bithir-mod/master/msgdata/data.json", function(data) 
         {                    
-            let latestVersion = game.settings.get(game.bithirmod.moduleId, 'devMessageVersionNumber');
+            let latestVersion = game.settings.get(game.bithirmod.config.moduleId, 'devMessageVersionNumber');
             if(isNaN(latestVersion)) {
                 latestVersion = 0;
             }
@@ -27,7 +27,7 @@ export function sendDevMessage()
                 latestVersion = Math.max(latestVersion, msgenvelope.version);
             }
             game.symbaroum.info("Message system - latestVersion message after "+latestVersion);
-            game.settings.set(game.bithirmod.moduleId, 'devMessageVersionNumber', latestVersion);
+            game.settings.set(game.bithirmod.config.moduleId, 'devMessageVersionNumber', latestVersion);
         })
         .fail(function(data) {
             game.symbaroum.error("Could not retreive Bithir mods news Message:"+JSON.stringify(data));
