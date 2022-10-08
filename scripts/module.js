@@ -46,8 +46,10 @@ Hooks.once('ready', async function() {
         config: BITHIRMODCONF,
         macros: new BithirMacros()
     };
-    ModuleImport();
-    sendDevMessage();
+    if (game.user.isGM) {
+        ModuleImport();
+        sendDevMessage();
+    }
     game.symbaroum.info(`Module[${moduleId}] ready hook complete`);
 });
 
