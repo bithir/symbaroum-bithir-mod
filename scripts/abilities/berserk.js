@@ -26,6 +26,19 @@ export function getItemModifierBerserkerv2(combatMods, armors, weapons, abilitie
         }];
         combatMods.weapons[weapons[i].id].package[0].member.push(base);
     }
+
+    if(lvl.level > 1) {
+        for(let i = 0; i < armors.length; i++)
+        {
+            if( armors[i].isNoArmor || armors[i].system.isStackableArmor) {
+                continue;
+            }
+            let base = this._getBaseFormat();
+            base.type = base.type = game.symbaroum.config.DAM_DICEUPGRADE;
+            base.diceUpgrade = 2;
+            combatMods.armors[armors[i].id].protectionChoices.push(base);
+        }
+    }
 }
 
 export function abilitySetupBerserkerv2(base) {

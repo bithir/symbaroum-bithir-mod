@@ -3,6 +3,7 @@ import { getItemModifierUncannycoordination } from './abilities/uncannycoordinat
 import { getItemModifierBerserkerv2, abilitySetupBerserkerv2 } from './abilities/berserk.js';
 import { BithirMacros } from './lib/libmacros.js';
 import { sendDevMessage } from './devmessage.js';
+import { LocationDie, EventDie, CreatureDie, RewardDie } from './inspiration/die.js';
 
 const moduleId = 'symbaroum-bithir-mod';
 const adventurePack = `${moduleId}.bithir-mods`;
@@ -36,6 +37,13 @@ Hooks.once('init', async function() {
         label: "ABILITY_LABEL.BERSERKER",
         icon: "systems/symbaroum/asset/image/berserker.svg"
     });
+
+    // Dice
+    CONFIG.Dice.terms[LocationDie.DENOMINATION] = LocationDie;
+    CONFIG.Dice.terms[EventDie.DENOMINATION] = EventDie;
+    CONFIG.Dice.terms[CreatureDie.DENOMINATION] = CreatureDie;
+    CONFIG.Dice.terms[RewardDie.DENOMINATION] = RewardDie;
+    // game.symbaroum.info(`Module[${moduleId}] init hook complete`);
 });
 
 
@@ -84,3 +92,15 @@ export async function ModuleImport() {
     const adventure = await pack.getDocument(adventureId);
     await adventure.sheet.render(true);
 };
+
+Hooks.once('diceSoNiceReady', (dice3d) => {
+    dice3d.addColorset(LocationDie.diceSoNiceColorset);
+    dice3d.addDicePreset(LocationDie.diceSoNiceDicePreset);
+    dice3d.addColorset(EventDie.diceSoNiceColorset);
+    dice3d.addDicePreset(EventDie.diceSoNiceDicePreset);
+    dice3d.addColorset(CreatureDie.diceSoNiceColorset);
+    dice3d.addDicePreset(CreatureDie.diceSoNiceDicePreset);
+    dice3d.addColorset(RewardDie.diceSoNiceColorset);
+    dice3d.addDicePreset(RewardDie.diceSoNiceDicePreset);
+
+});

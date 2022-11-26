@@ -1,3 +1,27 @@
 {
-    "GAME.Paused" : "Davokar sleeps"
+    "GAME.Paused" : "Davokar sleeps",
+    "BITHIRMOD.inspiration_tooltip_l1": "Location - Castle, fortification, etc",
+    "BITHIRMOD.inspiration_tooltip_l2": "Location - Tent, camp, travelling companions, etc",
+    "BITHIRMOD.inspiration_tooltip_l3": "Location - Forest, Davokar, tree, etc",
+    "BITHIRMOD.inspiration_tooltip_l4": "Location - Ruin, decayed place, etc",
+    "BITHIRMOD.inspiration_tooltip_l5": "Location - Temple, holy place, worship, etc",
+    "BITHIRMOD.inspiration_tooltip_l6": "Location - Cave, underworld, etc",
+    "BITHIRMOD.inspiration_tooltip_e1": "Event - Corruption, poison, betrayal, etc",
+    "BITHIRMOD.inspiration_tooltip_e2": "Event - Murder, death, decay, etc",
+    "BITHIRMOD.inspiration_tooltip_e3": "Event - Mystery, hiding, subterfuge, etc",
+    "BITHIRMOD.inspiration_tooltip_e4": "Event - Lore, hidden knowledge, etc, ",
+    "BITHIRMOD.inspiration_tooltip_e5": "Event - Journey, travel, far away, etc",
+    "BITHIRMOD.inspiration_tooltip_e6": "Event - Battle, challenge, competition, etc",
+    "BITHIRMOD.inspiration_tooltip_c1": "Creatures - Unknown, historic being, god, etc",
+    "BITHIRMOD.inspiration_tooltip_c2": "Creatures - Beasts, reptile, birds, etc",
+    "BITHIRMOD.inspiration_tooltip_c3": "Creatures - Undead, dragoul, dead creature, etc",
+    "BITHIRMOD.inspiration_tooltip_c4": "Creatures - Abomination, blight creature, demon, etc",
+    "BITHIRMOD.inspiration_tooltip_c5": "Creatures - Cultural Being, Ambrian, Barbarian, Elderfolk, etc",
+    "BITHIRMOD.inspiration_tooltip_c6": "Creatures - Unique creature, elemental, dragon, etc",
+    "BITHIRMOD.inspiration_tooltip_r1": "Reward - Trinket, memorable item, etc",
+    "BITHIRMOD.inspiration_tooltip_r2": "Reward - Artifact, valuable item, etc",
+    "BITHIRMOD.inspiration_tooltip_r3": "Reward - Gold, monetary reward, riches, etc",
+    "BITHIRMOD.inspiration_tooltip_r4": "Reward - Fame, renown, influence, etc",
+    "BITHIRMOD.inspiration_tooltip_r5": "Reward - Power, control, might, etc",
+    "BITHIRMOD.inspiration_tooltip_r6": "Reward - Clue, insight, valuble information, etc"
 }

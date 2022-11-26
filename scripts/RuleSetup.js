@@ -2,7 +2,7 @@ export class RuleSetup  extends FormApplication {
     static get defaultOptions() {
         const options = super.defaultOptions;
         options.id = "rule-library";
-        options.template = "modules/symbaroum-bithir-mod/templates/rule-library.html";
+        options.template = "modules/symbaroum-bithir-mod/templates/rule-library.hbs";
         options.width = 900;
         return options;
     }

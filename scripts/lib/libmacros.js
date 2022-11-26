@@ -290,4 +290,107 @@ export class BithirMacros
             game.symbaroum.error("Could not retreive Aroaleta text. Message:"+JSON.stringify(data));
         });
     }
+
+    async rollRollInspiration() {
+        //
+        let dialog_content = `  
+        <div class="form-group">
+        <div style="flex-basis: auto;flex-direction: row;display: flex;">
+                    <div style="width:10em;min-width:10em;"><label for="location" style="width:10em;min-width:10em">Location dice</label></div><div><input type="text" name="location" value="1" style="width:5em"></div>
+        </div>
+        <div style="flex-basis: auto;flex-direction: row;display: flex;">
+                    <div style="width:10em;min-width:10em;"><label for="event" style="width:10em;min-width:10em">Event dice</label></div><div><input type="text" name="event" value="1" style="width:5em"></div>
+        </div>
+        <div style="flex-basis: auto;flex-direction: row;display: flex;">
+                    <div style="width:10em;min-width:10em;"><label for="creature" style="width:10em;min-width:10em">Creature dice</label></div><div><input type="text" name="creature" value="1" style="width:5em"></div>
+        </div>
+        <div style="flex-basis: auto;flex-direction: row;display: flex;">
+                    <div style="width:10em;min-width:10em;"><label for="reward" style="width:10em;min-width:10em">Reward dice</label></div><div><input type="text" name="reward" value="1" style="width:5em"></div>
+        </div>
+        <br/>
+        </div>`;
+        let x = new Dialog({
+            title: "Inspiration roll",
+            content : dialog_content,
+            buttons : 
+            {
+                Ok :{ label : `Ok`, callback : async (html) => {             
+                                                let location = parseInt(html.find("input[name='location'")[0].value);
+                                                let event = parseInt(html.find("input[name='event'")[0].value);
+                                                let creature = parseInt(html.find("input[name='creature'")[0].value);
+                                                let reward = parseInt(html.find("input[name='reward'")[0].value);
+                                                let rollString = [];
+                                                if(!isNaN(location) || location !== 0) {                                                    
+                                                    rollString.push(`${location}dl`);
+                                                }
+                                                if(!isNaN(event) || event !== 0) {                                                    
+                                                    rollString.push(`${event}de`);
+                                                }
+                                                if(!isNaN(creature) || creature !== 0) {                                                    
+                                                    rollString.push(`${creature}dc`);
+                                                }
+                                                if(!isNaN(reward) || reward !== 0) {                                                    
+                                                    rollString.push(`${reward}dr`);
+                                                }
+                                                console.log("RollString "+ rollString.join('+'));
+                                                let rolls = await new Roll(rollString.join('+')).evaluate({async:true});
+                                                let rollData = {
+                                                    formula: rolls.formula,
+                                                    rolls: this.assembleInspirationResults(rolls)
+                                                }
+                                                const template = await renderTemplate(`${game.bithirmod.config.templatePath}/inspirationroll.hbs`, rollData);
+
+                                                // Once we go to non-API version of DsN, then set this in chatData: type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+                                                let chatData = {
+                                                    user: game.user.id,
+                                                    speaker: ChatMessage.getSpeaker({ 
+                                                    alias: 'Inspiration results'
+                                                    }),
+                                                    type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+                                                    roll: JSON.stringify(rolls),
+                                                    rollMode: game.settings.get('core', 'rollMode'),
+                                                    content: template,
+                                                };                                                                                        
+                                                const dsnsettings = game.user.getFlag("dice-so-nice", "settings");
+
+                                                if(game.modules.get("dice-so-nice")?.availability && (!dsnsettings || dsnsettings.hideAfterRoll) ) {
+                                                    if(!dsnsettings) {
+                                                        await game.user.setFlag('dice-so-nice', 'settings', game.dice3d.constructor.CONFIG() );
+                                                    }
+                                                    const timeout = parseInt(game.user.getFlag("dice-so-nice", "settings").timeBeforeHide);
+                                                    if(isNaN(timeout) ) {
+                                                        return;
+                                                    }
+                                                    // Not persisted - just change in-memory value for the time it takes to make the
+                                                    // roll and the time it takes before dsn tries to clear the dices from the display
+                                                    game.user.getFlag("dice-so-nice", "settings").hideAfterRoll = false;
+                                                    setTimeout(() => { 
+                                                            game.user.getFlag("dice-so-nice", "settings").hideAfterRoll = true;
+                                                        },
+                                                        timeout+500
+                                                    );
+                                                }
+                                                ChatMessage.create(chatData);
+                                            }
+                },
+                Cancel : {label : `Cancel`}
+            }  
+        });
+        x.options.width = 200;
+        x.position.width = 300;
+        
+        x.render(true);
+    }
+
+    assembleInspirationResults(rolls) {
+        let assembledResults = [];
+        for(const dice of rolls.dice) {
+            for(const result of dice.results) {
+                result.css = dice.getResultCSS(result).join(' ');
+                result.img = dice.getResultLabel(result);
+                assembledResults.push(result);
+            }
+        }
+        return assembledResults;
+    }
 }
