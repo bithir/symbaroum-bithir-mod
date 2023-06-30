@@ -1,4 +1,6 @@
 ## Changelog
+### Release 3.1
+- [x] Removed support for v10
 ### Release 3.0
 - [x] Release for foundry v11
 - [x] NPC/Monster generator finished - completing the Abmination generator work
