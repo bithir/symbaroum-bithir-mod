@@ -2,16 +2,16 @@
   "name":"symbaroum-bithir-mod",
   "id":"symbaroum-bithir-mod",
   "title": "Bithir's Symbaroum Mods",
-  "description": "Bithir's mods for Symbaroum",
-  "version": "1.0.0",
+  "description": "This is Bithir's mods for Symbaroum. <br>This module contains minor modifications to the Symbaroum system, such as random abomination creator, inspiration dice and a few abilities/traits.",
+  "version": "#{VERSION}#",
   "library": "false",
-  "manifestPlusVersion": "1.0.0",
+  "manifestPlusVersion": "1.0.0",  
   "minimumCoreVersion": 10,
-  "compatibleCoreVersion": 10,
+  "compatibleCoreVersion": 11,
   "compatibility": {
     "minimum": 10,
-    "verified": 10,
-    "maximum": 10
+    "verified": 11,
+    "maximum": 11
   },
   "authors": [
     {
@@ -25,8 +25,8 @@
       "type": "system",
       "manifest": "https://github.com/pwatson100/symbaroum/releases/latest/download/system.json",
       "compatibility": {
-        "minimum": "4.0.0",
-        "verified": 4
+        "minimum": "4.1.2",
+        "verified": "4.1.2"
       }
     }]
   },
@@ -52,10 +52,19 @@
       "system": "symbaroum",
       "path": "packs/bithir-mods.db",
       "type": "Adventure",
-      "module": "bithir-mods"
+      "module": "bithir-mods",
+      "banner": "modules/symbaroum-bithir-mod/assets/midjourney/non-paid-scenery/compendium-banner.webp"
     }
   ],
-  "url": "This is auto replaced",
-  "manifest": "This is auto replaced",
-  "download": "This is auto replaced"
+	"media": [{
+      "type": "cover",
+      "url": "https://raw.githubusercontent.com/bithir/symbaroum-bithir-mod/master/assets/midjourney/non-paid-scenery/Kuffer_cave_entrance_inside_a_forest_with_a_skeleton_on_the_flo_0549f718-606a-4931-a6aa-35135ef27127-banner.webp"
+    },{
+      "type": "setup",
+      "thumbnail": "modules/symbaroum-bithir-mod/assets/midjourney/non-paid-scenery/Kuffer_cave_entrance_inside_a_forest_with_a_skeleton_on_the_flo_0549f718-606a-4931-a6aa-35135ef27127-banner.webp"
+    }
+  ],
+  "url": "#{URL}#",
+  "manifest": "#{MANIFEST}#",
+  "download": "#{DOWNLOAD}#"
 }

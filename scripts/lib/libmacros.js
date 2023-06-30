@@ -1,72 +1,102 @@
 
 export class BithirMacros
 {
-    async generateAbominationMacro()
+    async generateNPCMacro()
     {
-        let self = this;
-        let jqxhr = $.getJSON( "modules/symbaroum-bithir-mod/data/abomination-generator.json", function(abominationConfig) 
-        { 
-            console.log(abominationConfig);
-            // Capture exp level (from drop down)
-            let expLevel = '';
-            for(let resistLv of abominationConfig.resistanceLevels) {
-                expLevel += `<option value="${resistLv.name}">${resistLv.name}</option>`;
-            }
-            let dialog_content = `  
-            <div class="form-group">
-            <h2>Select abomination resistance level</h2>
+        const api = game.bithirmod.api;
+        const generatorFileRegex = /.*\/(.*)-generator.json/;
+        let generatorList = '';
+        const {files} = await FilePicker.browse("data", 'modules/symbaroum-bithir-mod/data/');
+        for(let i = 0; i < files.length; i++) {
+            let mymatch = files[i].match(generatorFileRegex);
+            if(mymatch == null ) { continue; }
+            generatorList += `<option value="${mymatch[1]}">${mymatch[1]}</option>`;
+        }
+        // Capture exp level (from drop down)
+        let expLevel = '';
+        for(let resistLv of game.bithirmod.config.resistanceLevels) {
+            expLevel += `<option value="${resistLv.name}">${resistLv.name}</option>`;
+        }
+        let dialog_content = `  
+        <div class="form-group">
+            <h2>${api.localize('GENERATOR_SELECTGENERATORTYPE')}</h2>
             <br />
             <div style="flex-basis: auto;flex-direction: row;display: flex;">
-            <div style="width:10em;min-width:10em;"><select id="expLevel" name="expLevel">${expLevel}</select></div>
+                <div class="dialogEntry"><select id="generator" name="generator">${generatorList}</select></div>
             </div><br/>
-            </div>`;
-            const x = new Dialog({
-                content : dialog_content,
-                buttons : 
-                {
-                Ok : { label : `Ok`, callback : async (html)=> {
-                        const expLevelName = html.find('#expLevel')[0].value;
-                        const selectedExpLevel = abominationConfig.resistanceLevels.find( resistLv => { 
-                            return resistLv.name == expLevelName;
-                        });
-                        if(selectedExpLevel) {
-                            await self.generateAbomination(abominationConfig, selectedExpLevel);
-                        } else {
-                            // Panic - someone clicked the Ok button, but somehow nothing matched in the selection drop down
-                            // Should technically be impossible, so I am just going to ignore it for now
-                        }
+            <h2>Select generator resistance level</h2>
+            <br />
+            <div style="flex-basis: auto;flex-direction: row;display: flex;">
+                <div class="dialogEntry"><select id="expLevel" name="expLevel">${expLevel}</select></div>
+            </div>
+            <br/>        
+        </div>`;
+        const x = new Dialog({
+            content : dialog_content,
+            buttons : 
+            {
+            Ok : { label : api.localize(`OK`), callback : async (html)=> {
+                    const generatorConfigName = html.find('#generator')[0].value;
+                    const expLevelName = html.find('#expLevel')[0].value;
+                    const selectedExpLevel = game.bithirmod.config.resistanceLevels.find( resistLv => { 
+                        return resistLv.name == expLevelName;
+                    });
+                    if(selectedExpLevel) {
+                        await this.generateNPC(generatorConfigName, selectedExpLevel);
+                    } else {
+                        // Panic - someone clicked the Ok button, but somehow nothing matched in the selection drop down
+                        // Should technically be impossible, so I am just going to ignore it for now
                     }
-                },
-                Cancel : {label : `Cancel`}
                 }
-            });
-            
-            x.options.width = 200;
-            x.position.width = 300;
-            
-            x.render(true);
-        })
-        .fail(function(data) {
-            game.symbaroum.error("Could not retreive Aroaleta text. Message:"+JSON.stringify(data));
+            },
+            Cancel : {label : api.localize(`CANCEL`)}
+            }
         });
-
+        
+        x.options.width = 200;
+        x.position.width = 350;
+        
+        x.render(true);
     }
 
-    async generateAbomination(abominationConfig, xpLevel) {        
+    async generateNPC(generatorConfigName, xpLevel) {        
+        const generatorConfig = await foundry.utils.fetchJsonWithTimeout(`modules/symbaroum-bithir-mod/data/${generatorConfigName}-generator.json`);
         const config = game.bithirmod.config;
-        const folderId = await this.getFolderID("Generated Abominations");
-        const {files} = await FilePicker.browse("data", abominationConfig.midjourneyNonPaidDir);        
-    
-
-        game.symbaroum.log(`Making a ${xpLevel.name} abomination starting at ${xpLevel.abilities} abilities`);
+        const folderId = await this.getFolderID(generatorConfig.folderName);        
         // Create what will become monster actor
         
         // Randomise stat block
-        const statBlock = config.randomElement(abominationConfig.abominationStatBlocks); 
+        const statBlock = config.randomElement(generatorConfig.statBlocks); 
+        game.symbaroum.log(`Making a ${xpLevel.name} ${statBlock.race} starting at ${xpLevel.abilities} abilities`);
         game.symbaroum.log(`Picked stat block of ${statBlock.name}`,statBlock);
+        let gender = null;
+        if(generatorConfig.gender && generatorConfig.gender.length > 0)
+        {
+            // gender is masculine, feminine (can't do noble in any easy way)
+            gender = `${config.randomElement(generatorConfig.gender)}`;
+        }
+        const {files} = await FilePicker.browse("data", [generatorConfig.images, gender].join('/'));        
+
+        let name = '';
+        // Use built-in generator (or not) - format is
+        // {@generateNames[category]}
+        const builtin = /\{\@generateNames\[([^\]]*)\]\}/;
+        const nameMatch = statBlock.name.match(builtin);
+        if(nameMatch == null) {
+            name = (await game.bithirmod.api.parseSimpleElement(generatorConfig.shadow, {}, `${statBlock.name}`)).capitalize()
+        } else {
+            // This should be a loop for each match - which then needs to be async
+            // default to generate the name from the race entry for the stat block
+            let category = nameMatch[1];
+            if(!nameMatch.includes('-') && gender)  {
+                category = `${nameMatch[1]}-${gender}`;                
+            }
+            console.log(`Generating name for ${category}`);
+            name = (await game.symbaroum.api.generateNames(category, 1))[0];
+        }
 
         const actorDetails = {
-            name: this.expandDescription(abominationConfig, `{adjective} ${statBlock.name}`).capitalize(),
+            name: name,
             type: "monster",
             img: config.randomElement(files),
             folder: null,
@@ -77,24 +107,26 @@ export class BithirMacros
             items: [],
             flags: {}        
         }
-        foundry.utils.setProperty(actorDetails, "system.bio.race", "abomination");
-        foundry.utils.setProperty(actorDetails, "system.bio.shadow",  this.generateShadow(abominationConfig).capitalize());
+        foundry.utils.setProperty(actorDetails, "system.bio.race", statBlock.race);
         foundry.utils.setProperty(actorDetails, "system.bio.appearance", ""); 
+        foundry.utils.setProperty(actorDetails, "system.bio.occupation", statBlock.occupation ?? "");
 
         this.setAttributes(actorDetails, statBlock);
         const roll = await new Roll(xpLevel.abilities).evaluate({async: true});
         let startCoreCount = roll.total;
-        game.symbaroum.log(`startCoreCount[${startCoreCount}]`);
         let actor = await Actor.create(actorDetails);
 
+        // List of table roll of items
+        let itemList = generatorConfig.includedItems;
+
         let actorItems = []; // This will contain all abilities & traits
-        // Duplicate abilities so that we do not change the normal configuration
-        let abilities = duplicate(abominationConfig.abominationAbilities);
+        let abilities = generatorConfig.abilities;
         // Create a weighted list of abilities
         let sumWeight = 0;        
         // Sum up rarities, so that we know the whole span
         for(var abil in abilities) {
             sumWeight += abilities[abil].weight;
+            // Strip out abilities that the stat block does not want
             abilities[abil].abilityRef = abilities[abil].abilityRef.filter( abilityKeep => { return !statBlock.excludedAbilities.includes(abilityKeep)})
         }
         game.symbaroum.log(`Weight[${sumWeight}]`);
@@ -102,8 +134,6 @@ export class BithirMacros
         // Core abilities
         abilities.core.abilityRef = abilities.core.abilityRef.concat( statBlock.includedAbilities );        
 
-        // Add any included abilities
-        abilities.common.abilityRef = abilities.common.abilityRef.concat( statBlock.includedAbilities );
         // Add core to common abilities
         abilities.common.abilityRef = abilities.common.abilityRef.concat( abilities.core.abilityRef );
 
@@ -111,50 +141,141 @@ export class BithirMacros
         // So this is the pleatora of skills
         game.symbaroum.log(abilities, `start ability count ${startCoreCount}`);
         for(let i = 0; i < startCoreCount; i++) {
-            currentXp += this.addAbility(actorItems, config.randomElement(abilities.core.abilityRef));
+            let chosenAbility = config.randomElement(abilities.core.abilityRef);
+            currentXp += this.addAbility(actorItems, chosenAbility);
+            // Remove stuff
+            for(let abil2 in abilities) {
+                abilities[abil2].abilityRef = abilities[abil2].abilityRef.filter( (elem) => { return !chosenAbility.excludedAbilities.includes(elem.reference)});
+            }
+            // Add stuff
+            if(chosenAbility.includedAbilities.length > 0) {
+                abilities["common"].abilityRef = abilities["common"].abilityRef.concat(chosenAbility.includedAbilities.map( elem => {
+                    return { "reference": elem, "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": [], "includesItems":[] }
+                }));
+            }
         }
+
+        let rarityModifier = 0;
         while(currentXp < xpLevel.experience) {
             game.symbaroum.log(`currentXp[${currentXp}] < xpLevel.experience[${xpLevel.experience}]`);
             // Pick rarity (value between 1 and 111)
-            let rarity = Math.floor(Math.random()*sumWeight)+1;            
+            let rarity = Math.floor(Math.random()*(sumWeight))+1;            
             // Sum up rarities, so that we know the whole span
-            for(var abil in abilities) {
+            for(let abil in abilities) {
                 if(abil == "core" ) continue;
                 // game.symbaroum.log(`rarity[${rarity}] - abilities[${abil}].weight[${abilities[abil].weight}]`);
                 rarity -= abilities[abil].weight;
                 if( rarity <= 0) {
                     // This is the rarity of the ability we want
                     // game.symbaroum.log(`Rarity ${abil} ability required`);
-                    currentXp += this.addAbility(actorItems, config.randomElement(abilities[abil].abilityRef) );
+                    // Chosen ability
+                    let chosenAbility = config.randomElement(abilities[abil].abilityRef);
+                    let moreXp = this.addAbility(actorItems, chosenAbility);
+                    currentXp += moreXp;
+                    if(moreXp == 0) {
+                        // remove chosen ability too                        
+                        chosenAbility.excludedAbilities.push(chosenAbility.reference);
+                    }
+                    // Remove stuff
+                    for(let abil2 in abilities) {
+                        abilities[abil2].abilityRef = abilities[abil2].abilityRef.filter( (elem) => { return !chosenAbility.excludedAbilities.includes(elem.reference)});
+                    }
+                    // Add stuff
+                    if(chosenAbility.includedAbilities.length > 0) {
+                        console.log('Will add included Abilities', chosenAbility);
+                        console.log('Pre values', abilities["common"].abilityRef);
+                        let commonAbilities = abilities["common"].abilityRef;
+                        abilities["common"].abilityRef = commonAbilities.concat(chosenAbility.includedAbilities.map( elem => {
+                            return { "reference": elem, "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": [], "includesItems":[] }
+                        }));
+                        console.log('Post values', abilities["common"].abilityRef);
+                    }
                     break;
                 }
             }
         }
         game.symbaroum.log(`currentXp[${currentXp}] < xpLevel.experience[${xpLevel.experience}]`);
+        // item list to do magic
+        const itemConfig = await foundry.utils.fetchJsonWithTimeout(`modules/symbaroum-bithir-mod/data/equipment.json`);
 
-        // Add weapon
-        const unarmedWeapons = game.items.filter(element => element.system.isWeapon && element.system.reference == "unarmed" );  
-        if(unarmedWeapons.length > 0) {
-            const weapon = duplicate(config.randomElement(unarmedWeapons));
-            foundry.utils.setProperty(weapon, "system.state", "active");
-            foundry.utils.setProperty(weapon, "name", this.expandDescription(abominationConfig, `{adjective} ${weapon.name}`).capitalize() );
-            actorItems.push(weapon);
+        console.log('itemConfig',itemConfig,'actorItems',actorItems, "itemList", itemList)
+        for(let ability of actorItems) {
+            if(itemConfig[ability.system.reference]) {
+                itemList = itemList.concat(itemConfig[ability.system.reference])
+            }
         }
-        const armorSkins = game.items.filter(element => element.system.isSkin);
-        if(armorSkins.length > 0) {
-            const armor = duplicate(config.randomElement(armorSkins));
-            foundry.utils.setProperty(armor, "system.state", "active");
-            foundry.utils.setProperty(armor, "name", this.expandDescription(abominationConfig, `{adjective} ${armor.name}`).capitalize() );
-            actorItems.push(armor);
-        }
-        const thoroughlycorrupt = game.items.filter(element => element.system.reference == "thoroughlycorrupt" );
-        if(thoroughlycorrupt.length > 0) {
-            actorItems.push(duplicate(thoroughlycorrupt[0]));
-        }
+        console.log('itemList',itemList);
 
+        let armorAdded = false;
+        for(let itemdesc of itemList) {
+            if(itemdesc.match(/\{#[^\}]+\}/)) {
+                // we got {#} to roll table
+                let table = game.tables.getName(itemdesc.match(/\{#([^\}]+)\}/)[1]);
+                if(!table) {
+                    console.log(`Can't find table for ${itemdesc}`);
+                    continue;
+                }
+                let tableDraw = await table.roll();
+                let itemToAdd = null;
+                let name = null;
+                for(let tr of tableDraw.results) {
+                    if(tr.documentCollection == 'Item') {
+                        itemToAdd = duplicate(game.items.get(tr.documentId));
+                    } else if(tr.documentId == null) {
+                        name = tr.text;
+                    }
+                }
+                if(!itemToAdd) {
+                    console.log(`Can't locate item from table results of ${itemdesc} in table`, tableDraw);
+                }
+                if(name) {
+                    foundry.utils.setProperty(itemToAdd, "name", (await game.bithirmod.api.parseSimpleElement(generatorConfig.shadow,{},name)).capitalize() );
+                }
+                if(itemToAdd.type == 'weapon' || itemToAdd.type == 'armor' && !armorAdded) {
+                    itemToAdd.system.state = "active";
+                    armorAdded = true;
+                }
+                console.log("Adding item",itemToAdd);
+                actorItems.push(itemToAdd);
+            } else {
+                let match = itemdesc.match(/(?<number>[^]*)@(?<nameReg>.*)/);
+                let number = "1";
+                if(match) {
+                    number = match.groups.number;
+                    itemdesc = match.groups.nameReg;
+                }
+                // Search actor catalogue for matching name or for weapons, the reference, (and pick 1)
+                let itemPick = game.items.filter( elem => {
+                    if(!elem.system.isGear) return false;
+                    let regex = new RegExp(itemdesc,'i');
+                    if(elem.system.isWeapon && elem.system.reference.match(regex) || elem.name.match(regex)) {
+                        return true;
+                    }
+                    return false;
+                })                
+                if(itemPick.length == 0) {
+                    console.log(`Can't find matching item in the Foundry item catalogue for ${itemdesc}`);
+                    continue;
+                }
+                let roll = await new Roll(number).evaluate();
+                let r = roll.total;
+
+                for(let i = 0; i < r; i++) {
+                    let itemToAdd =  duplicate(config.randomElement(itemPick));                    
+                    if(itemToAdd.type == 'weapon' || itemToAdd.type == 'armor' && !armorAdded) {
+                        foundry.utils.setProperty(itemToAdd, "system.state", "active");
+                        armorAdded = true;
+                    }
+                    actorItems.push(itemToAdd);
+                }
+            }
+
+        }
         await actor.createEmbeddedDocuments("Item", actorItems);
 
         let healMe = {_id:actor.id};
+        const myShadow = await game.bithirmod.api.generateShadow(generatorConfig.shadow, actor);        
+        foundry.utils.setProperty(healMe, "system.bio.shadow", myShadow.capitalize() );
         foundry.utils.setProperty(healMe, "system.health.toughness.value", getProperty(actor, "system.health.toughness.max") );
         foundry.utils.setProperty(healMe, "system.experience.total", getProperty(actor, "system.experience.spent") );
         await Actor.updateDocuments([healMe]);
@@ -164,8 +285,9 @@ export class BithirMacros
     /**
      * 
      * @param {*} actorItems 
-     * @param {*} ability 
-     * @return The number of Experience that it costs
+     * @param {*} itemList
+     * @param {*} ability
+     * @return The new ability list and number of Experience that it costs {abilitylist : [ .. ], expCost; [0-9]+}
      */
 
     addAbility(actorItems, ability) {
@@ -179,8 +301,9 @@ export class BithirMacros
             if(newAbility.length > 0) {
                 selectedAbility = duplicate(newAbility[0]);
                 game.symbaroum.log(`Retriveved[${selectedAbility.name}] from the item catalogue`);
-                let rnd = Math.floor(Math.random()*60);
-                let level = rnd > 50 ? 3: rnd > 30 ? 2 : 1;
+                let rnd = Math.floor(Math.random()*100);
+                let level = rnd > 95 ? 3: rnd > 70 ? 2 : 1;
+
                 if(selectedAbility.system.marker == "active") { level = 1; }
     
                 foundry.utils.setProperty(selectedAbility, "system.master.isActive", level > 2);
@@ -211,6 +334,11 @@ export class BithirMacros
         // console.log(selectedAbility);
     }
 
+    /**
+     * 
+     * @param {*} selectedAbility 
+     * @returns 
+     */
     getLevel(selectedAbility) {
         if(foundry.utils.getProperty(selectedAbility,"system.master.isActive")) {
             return 3;
@@ -229,28 +357,6 @@ export class BithirMacros
         }
     }
 
-    /**
-     * 
-     * @param {*} str The string to expand from abomination descriptions (example "{color} smurf with {adjective} nose")
-     * @returns The expanded description with random values
-     */
-    expandDescription(abominationConfig, str) {
-        const descs = abominationConfig.abominationDescriptions;
-
-        if(str == null) { return ""; }
-
-        str = str.replace(/\{\w+\}/g, function(all) {
-            all = all.replace(/[\{\}]/g,'');
-            return game.bithirmod.config.randomElement(descs[all]) || all;
-        });
-        return str;
-    }
-
-    generateShadow(abominationConfig) {
-        return this.expandDescription(abominationConfig, game.bithirmod.config.randomElement(abominationConfig.abominationShadows));
-
-    }
-
     async getFolderID(folderName) {
         let folder = game.folders.filter( f => { return f.name == folderName && f.type == 'Actor'; });
         if(folder.length == 0) {
@@ -266,55 +372,52 @@ export class BithirMacros
     }
 
     async thusSpoke() {
-        let jqxhr = $.getJSON( "modules/symbaroum-bithir-mod/data/aroaleta-verses.json", function(data) 
-        { 
-            console.log(data);
-            const keys = Object.keys(data);
-            const selectedKey = game.bithirmod.config.randomElement(keys);
-            const aroaletaText = game.bithirmod.config.randomElement(data[selectedKey]);
-            let template = `<blockquote style="border-left:0px" class="symbaroum-mod fancytextright">
-                <div style="display: flex;align-items: center;justify-content: center;"><span style="display:flex" class="symbaroum-mod fancyheader">&nbsp;</span></div>
-                <span class="symbaroum-mod"><h5 data-anchor="thus-spoke-aroaleta">THUS SPOKE AROALETA</h5></span>
-                <p class="symbaroum-mod fancytext">
-                    “${aroaletaText}”
-                </p>
-                <p class="symbaroum-mod fancytext">${selectedKey}</p>
-                <div style="display: flex;align-items: center;justify-content: center;"><span style="display:flex" class="symbaroum-mod fancyheader">&nbsp;</span></div>
-            </blockquote>`;
-            ChatMessage.create({
-                speaker: { alias: "Aroelata" },
-                content: template
-            });
-        })
-        .fail(function(data) {
-            game.symbaroum.error("Could not retreive Aroaleta text. Message:"+JSON.stringify(data));
+        const api = game.bithirmod.api;
+        let data = await foundry.utils.fetchJsonWithTimeout(`modules/symbaroum-bithir-mod/data/aroaleta-verses.json`);
+        console.log(data);
+        const keys = Object.keys(data);
+        const selectedKey = game.bithirmod.config.randomElement(keys);
+        const aroaletaText = game.bithirmod.config.randomElement(data[selectedKey]);
+        let template = `<blockquote style="border-left:0px" class="symbaroum-mod fancytextright">
+            <div style="display: flex;align-items: center;justify-content: center;"><span style="display:flex" class="symbaroum-mod fancyheader">&nbsp;</span></div>
+            <span class="symbaroum-mod"><h5 data-anchor="thus-spoke-aroaleta">${api.localize('VERSES_HEADER')}</h5></span>
+            <p class="symbaroum-mod fancytext">
+                “${aroaletaText}”
+            </p>
+            <p class="symbaroum-mod fancytext">${selectedKey}</p>
+            <div style="display: flex;align-items: center;justify-content: center;"><span style="display:flex" class="symbaroum-mod fancyheader">&nbsp;</span></div>
+        </blockquote>`;
+        ChatMessage.create({
+            speaker: { alias: "Aroelata" },
+            content: template
         });
     }
 
     async rollRollInspiration() {
         //
+        const api = game.bithirmod.api;
         let dialog_content = `  
-        <div class="form-group">
-        <div style="flex-basis: auto;flex-direction: row;display: flex;">
-                    <div style="width:10em;min-width:10em;"><label for="location" style="width:10em;min-width:10em">Location dice</label></div><div><input type="text" name="location" value="1" style="width:5em"></div>
+        <div class="form-group bithirmod">
+        <div class="dialogHeader">
+                    <div class="dialogEntry"><label for="location" class="dialogEntry">Location dice</label></div><div><input type="text" name="location" value="1" class="inspirationInput"></div>
         </div>
-        <div style="flex-basis: auto;flex-direction: row;display: flex;">
-                    <div style="width:10em;min-width:10em;"><label for="event" style="width:10em;min-width:10em">Event dice</label></div><div><input type="text" name="event" value="1" style="width:5em"></div>
+        <div class="dialogHeader">
+                    <div class="dialogEntry"><label for="event" class="dialogEntry">Event dice</label></div><div><input type="text" name="event" value="1" class="inspirationInput"></div>
         </div>
-        <div style="flex-basis: auto;flex-direction: row;display: flex;">
-                    <div style="width:10em;min-width:10em;"><label for="creature" style="width:10em;min-width:10em">Creature dice</label></div><div><input type="text" name="creature" value="1" style="width:5em"></div>
+        <div class="dialogHeader">
+                    <div class="dialogEntry"><label for="creature" class="dialogEntry">Creature dice</label></div><div><input type="text" name="creature" value="1" class="inspirationInput"></div>
         </div>
-        <div style="flex-basis: auto;flex-direction: row;display: flex;">
-                    <div style="width:10em;min-width:10em;"><label for="reward" style="width:10em;min-width:10em">Reward dice</label></div><div><input type="text" name="reward" value="1" style="width:5em"></div>
+        <div class="dialogHeader">
+                    <div class="dialogEntry"><label for="reward" class="dialogEntry">Reward dice</label></div><div><input type="text" name="reward" value="1" class="inspirationInput"></div>
         </div>
         <br/>
         </div>`;
         let x = new Dialog({
-            title: "Inspiration roll",
+            title: api.localize('inspiration_title'),
             content : dialog_content,
             buttons : 
             {
-                Ok :{ label : `Ok`, callback : async (html) => {             
+                Ok :{ label : api.localize('OK'), callback : async (html) => {             
                                                 let location = parseInt(html.find("input[name='location'")[0].value);
                                                 let event = parseInt(html.find("input[name='event'")[0].value);
                                                 let creature = parseInt(html.find("input[name='creature'")[0].value);
@@ -344,36 +447,38 @@ export class BithirMacros
                                                 let chatData = {
                                                     user: game.user.id,
                                                     speaker: ChatMessage.getSpeaker({ 
-                                                    alias: 'Inspiration results'
+                                                    alias: api.localize('inspiration_results')
                                                     }),
                                                     type: CONST.CHAT_MESSAGE_TYPES.ROLL,
                                                     roll: JSON.stringify(rolls),
                                                     rollMode: game.settings.get('core', 'rollMode'),
                                                     content: template,
-                                                };                                                                                        
-                                                const dsnsettings = game.user.getFlag("dice-so-nice", "settings");
+                                                };
+                                                if(game.modules.get("dice-so-nice")?.active ) {
+                                                    const dsnsettings = game.user.getFlag("dice-so-nice", "settings");
 
-                                                if(game.modules.get("dice-so-nice")?.availability && (!dsnsettings || dsnsettings.hideAfterRoll) ) {
-                                                    if(!dsnsettings) {
-                                                        await game.user.setFlag('dice-so-nice', 'settings', game.dice3d.constructor.CONFIG() );
+                                                    if(!dsnsettings || dsnsettings.hideAfterRoll) {
+                                                        if(!dsnsettings) {
+                                                            await game.user.setFlag('dice-so-nice', 'settings', game.dice3d.constructor.CONFIG() );
+                                                        }
+                                                        const timeout = parseInt(game.user.getFlag("dice-so-nice", "settings").timeBeforeHide);
+                                                        if(isNaN(timeout) ) {
+                                                            return;
+                                                        }
+                                                        // Not persisted - just change in-memory value for the time it takes to make the
+                                                        // roll and the time it takes before dsn tries to clear the dices from the display
+                                                        game.user.getFlag("dice-so-nice", "settings").hideAfterRoll = false;
+                                                        setTimeout(() => { 
+                                                                game.user.getFlag("dice-so-nice", "settings").hideAfterRoll = true;
+                                                            },
+                                                            timeout+500
+                                                        );
                                                     }
-                                                    const timeout = parseInt(game.user.getFlag("dice-so-nice", "settings").timeBeforeHide);
-                                                    if(isNaN(timeout) ) {
-                                                        return;
-                                                    }
-                                                    // Not persisted - just change in-memory value for the time it takes to make the
-                                                    // roll and the time it takes before dsn tries to clear the dices from the display
-                                                    game.user.getFlag("dice-so-nice", "settings").hideAfterRoll = false;
-                                                    setTimeout(() => { 
-                                                            game.user.getFlag("dice-so-nice", "settings").hideAfterRoll = true;
-                                                        },
-                                                        timeout+500
-                                                    );
                                                 }
                                                 ChatMessage.create(chatData);
                                             }
                 },
-                Cancel : {label : `Cancel`}
+                Cancel : {label : api.localize('CANCEL')}
             }  
         });
         x.options.width = 200;

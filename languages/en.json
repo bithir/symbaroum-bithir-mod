@@ -1,5 +1,7 @@
 {
     "GAME.Paused" : "Davokar sleeps",
+    "BITHIRMOD.inspiration_results": "Inspiration results",
+    "BITHIRMOD.inspiration_title": "Inspiration roll",
     "BITHIRMOD.inspiration_tooltip_l1": "Location - Castle, fortification, etc",
     "BITHIRMOD.inspiration_tooltip_l2": "Location - Tent, camp, travelling companions, etc",
     "BITHIRMOD.inspiration_tooltip_l3": "Location - Forest, Davokar, tree, etc",
@@ -23,5 +25,28 @@
     "BITHIRMOD.inspiration_tooltip_r3": "Reward - Gold, monetary reward, riches, etc",
     "BITHIRMOD.inspiration_tooltip_r4": "Reward - Fame, renown, influence, etc",
     "BITHIRMOD.inspiration_tooltip_r5": "Reward - Power, control, might, etc",
-    "BITHIRMOD.inspiration_tooltip_r6": "Reward - Clue, insight, valuble information, etc"
+    "BITHIRMOD.inspiration_tooltip_r6": "Reward - Clue, insight, valuble information, etc",
+
+    "BITHIRMOD.OK": "OK",
+    "BITHIRMOD.CANCEL": "CANCEL",
+
+
+    "BITHIRMOD.SHADOW_hideGeneration": "Hide shadow generation",
+    "BITHIRMOD.SHADOW_hideGeneration_hint": "Hides the option for generating shadows",
+    "BITHIRMOD.SHADOW_hideLabel": "Hide label for Shadow",
+    "BITHIRMOD.SHADOW_hideLabel_hint": "Hides the Generate Shadow label from the character sheet",
+    "BITHIRMOD.SHADOW_TITLE": "Generate shadow (or restore original)",
+    "BITHIRMOD.SHADOW_LABELTEXT": "Generate shadow",
+    "BITHIRMOD.SHADOW_SELECTSHADOWTYPE": "Select type of shadow",
+    "BITHIRMOD.SHADOW_corrupt": "Thouroughly corrupt shadow",
+    "BITHIRMOD.SHADOW_civilised": "Civilised shadow",
+    "BITHIRMOD.SHADOW_natural": "Natural shadow",
+    "BITHIRMOD.SHADOW_restoreshadow": "Restore original",
+
+    "BITHIRMOD.GENERATOR_SELECTGENERATORTYPE": "Select type of generator",
+
+    "BITHIRMOD.VERSES_HEADER":"THUS SPOKE AROALETA"
+
+
+
 }

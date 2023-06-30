@@ -1,9 +1,18 @@
 # Ideas for the future
 
-Dice for inspiration of Symbaroum adventures
+Dice for inspiration of Symbaroum adventures [Completed]
 Starting with:
     - Locations - Green tint - (castle, tent, tree, ruin, temple, cave)
     - Events - Pink tint - (corruption, murder, mystery, lore, journey, battle)
     - Creatures - Red tint - (unknown, beast, undead, abomination, culturual being, unique)
     - Reward - Yellow tint - (trinket, artifact, gold, fame, power, clue/map)
     - 
+
+
+Abomination Generator [Completed]
+NPC generator [Completed]
+Shadow generator [Completed]
+
+
+Configurable generator [far in the future]
+Configurable rule alterations [far in the future]

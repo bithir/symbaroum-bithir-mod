@@ -8,8 +8,6 @@ export function getItemModifierBerserkerv2(combatMods, armors, weapons, abilitie
     if(!this.actor.getFlag(game.system.id, 'berserkerv2')) {
         return;
     }
-    // Ignore armor addtiions
-
 
     // Check all weapons for melee weapons and if they are a melee weapon, add damage
     for(let i = 0; i < weapons.length; i++)
@@ -27,16 +25,20 @@ export function getItemModifierBerserkerv2(combatMods, armors, weapons, abilitie
         combatMods.weapons[weapons[i].id].package[0].member.push(base);
     }
 
-    if(lvl.level > 1) {
-        for(let i = 0; i < armors.length; i++)
-        {
-            if( armors[i].isNoArmor || armors[i].system.isStackableArmor) {
-                continue;
-            }
+
+    for(let i = 0; i < armors.length; i++)
+    {
+        if( armors[i].isNoArmor || armors[i].system.isStackableArmor) {
+            continue;
+        }
+        if(lvl.level > 1) {
             let base = this._getBaseFormat();
             base.type = base.type = game.symbaroum.config.DAM_DICEUPGRADE;
             base.diceUpgrade = 2;
             combatMods.armors[armors[i].id].protectionChoices.push(base);
+        }
+        if(lvl.level < 3) {
+            combatMods.armors[armors[i].id].specialEffects.push(game.symbaroum.config.SPECIAL_MIN_DEFENSE);
         }
     }
 }

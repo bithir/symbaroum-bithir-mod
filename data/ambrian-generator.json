@@ -1,0 +1,428 @@
+{
+    "name":"Ambrian generator",
+    "folderName":"Generated Ambrians",
+    "shadow":"civilised",
+    "gender": [
+        "feminine",
+        "masculine"
+    ],
+    "includedItems" : [ "light armor", "1handed"],
+    "statBlocks" : [ { 
+            "name": "{@generateNames[ambrian]}",
+            "race":"ambrian",
+            "occupation": "Strong and quick warrior",
+            "attributes": {
+                "accurate":7,
+                "cunning":10,
+                "discreet":7,
+                "persuasive":5,
+                "quick":13,
+                "resolute":11,
+                "strong":15,
+                "vigilant":9
+            },
+            "excludedAbilities": [],
+            "includedAbilities": [ 
+                { "reference": "polearmmastery", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "shieldfighter", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "stafffighting", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "twinattack", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "twohandedfinesse", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "twohandedforce", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": ["twohandedfinesse"]},
+                { "reference": "whipfighter", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "wrestling", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "axeartist", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "mantledance", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "marksman", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "ironfist", "forcedAbilities": [], "excludedAbilities": ["dominate","feint","sixthsense","tactician","backstab"], "includedAbilities": []},
+                { "reference": "ironfist", "forcedAbilities": [], "excludedAbilities": ["dominate","feint","sixthsense","tactician","backstab"], "includedAbilities": []},
+                { "reference": "ironfist", "forcedAbilities": [], "excludedAbilities": ["dominate","feint","sixthsense","tactician","backstab"], "includedAbilities": []}
+            ]
+        },
+        { 
+            "name": "{@generateNames[ambrian]}",
+            "race":"ambrian",
+            "occupation": "Strong and accurate warrior",
+            "attributes": {
+                "accurate":13,
+                "cunning":9,
+                "discreet":5,
+                "persuasive":7,
+                "quick":11,
+                "resolute":10,
+                "strong":15,
+                "vigilant":10
+            },
+            "excludedAbilities": [],
+            "includedAbilities": [ 
+                { "reference": "hammerrhythm", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "polearmmastery", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "shieldfighter", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "stafffighting", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "twinattack", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "twohandedfinesse", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "twohandedforce", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": ["twohandedfinesse"]},
+                { "reference": "whipfighter", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "wrestling", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "swordsaint", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","axeartist","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "axeartist", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+
+                { "reference": "knifeplay", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "ensnare", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "flailer", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "mantledance", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "marksman", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "rapidfire", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "arrowjab", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "steelthrow", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","arrowjab","rapidfire","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "strangler", "forcedAbilities": [], "excludedAbilities": ["axeartist","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+
+                { "reference": "ironfist", "forcedAbilities": [], "excludedAbilities": ["dominate","feint","sixthsense","tactician","backstab"], "includedAbilities": []}
+            ]
+        },
+        { 
+            "name": "{@generateNames[ambrian]}",
+            "race":"ambrian",
+            "occupation": "Accurate and discreet warrior",
+            "attributes": {
+                "accurate":15,
+                "cunning":10,
+                "discreet":13,
+                "persuasive":5,
+                "quick":11,
+                "resolute":7,
+                "strong":9,
+                "vigilant":10
+            },
+            "excludedAbilities": [
+            ],
+            "includedAbilities": [ 
+                { "reference": "backstab", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "hammerrhythm", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "polearmmastery", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "shieldfighter", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "stafffighting", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "twinattack", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "twohandedfinesse", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "twohandedforce", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": ["twohandedfinesse"]},
+                { "reference": "whipfighter", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "wrestling", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "swordsaint", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","axeartist","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "axeartist", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+
+                { "reference": "knifeplay", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "ensnare", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "flailer", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "mantledance", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "marksman", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "rapidfire", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "arrowjab", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "steelthrow", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","arrowjab","rapidfire","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "strangler", "forcedAbilities": [], "excludedAbilities": ["axeartist","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []}
+            ]
+        },
+        { 
+            "name": "{@generateNames[ambrian]}",
+            "race":"ambrian",
+            "occupation": "Resolute and discreet warrior",
+            "attributes": {
+                "accurate":10,
+                "cunning":5,
+                "discreet":11,
+                "persuasive":7,
+                "quick":13,
+                "resolute":15,
+                "strong":10,
+                "vigilant":9
+            },
+            "excludedAbilities": [
+            ],
+            "includedAbilities": [ 
+                { "reference": "sorcery", "forcedAbilities": [], "excludedAbilities": ["wizardry","witchcraft","theurgy","trollsinging","symbolism","staffmagic"], 
+                        "includedAbilities": ["bendwill","blackbolt","blackbreath","blindingsymbol","curse","larvaeboil","retribution","revenantstrike","unholyaura"]},
+                { "reference": "theurgy", "forcedAbilities": [], "excludedAbilities": ["sorcery","wizardry","witchcraft","trollsinging","symbolism","staffmagic"], 
+                        "includedAbilities": ["anathema","blessedshield","holyaura","inheritwound","layonhands","levitate","priosburningglass","trueform","unnoticeable","witch Hammer"]},
+                { "reference": "wizardry", "forcedAbilities": [], "excludedAbilities": ["sorcery","witchcraft","theurgy","trollsinging","symbolism","staffmagic"], 
+                        "includedAbilities": ["anathema","bendwill","brimstonecascade","confusion","flamewall","illusorycorrection","levitate","mindthrow","trueform","unnoticeable"]},
+
+                { "reference": "backstab", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "twinattack", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "knifeplay", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "mantledance", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+
+                { "reference": "feint", "forcedAbilities": [], "excludedAbilities": ["dominate","ironfist","sixthsense","tactician"], "includedAbilities": []}
+            ]
+        },
+        { 
+            "name": "{@generateNames[ambrian]}",
+            "race":"ambrian",
+            "occupation": "Discreet and resolute warrior/mystic",
+            "attributes": {
+                "accurate":11,
+                "cunning":10,
+                "discreet":15,
+                "persuasive":5,
+                "quick":9,
+                "resolute":13,
+                "strong":10,
+                "vigilant":7
+            },
+            "excludedAbilities": [
+            ],
+            "includedAbilities": [ 
+                { "reference": "sorcery", "forcedAbilities": [], "excludedAbilities": ["wizardry","witchcraft","theurgy","trollsinging","symbolism","staffmagic"], 
+                        "includedAbilities": ["bendwill","blackbolt","blackbreath","blindingsymbol","curse","larvaeboil","retribution","revenantstrike","unholyaura"]},
+                { "reference": "theurgy", "forcedAbilities": [], "excludedAbilities": ["sorcery","wizardry","witchcraft","trollsinging","symbolism","staffmagic"], 
+                        "includedAbilities": ["anathema","blessedshield","holyaura","inheritwound","layonhands","levitate","priosburningglass","trueform","unnoticeable","witch Hammer"]},
+                { "reference": "wizardry", "forcedAbilities": [], "excludedAbilities": ["sorcery","witchcraft","theurgy","trollsinging","symbolism","staffmagic"], 
+                        "includedAbilities": ["anathema","bendwill","brimstonecascade","confusion","flamewall","illusorycorrection","levitate","mindthrow","trueform","unnoticeable"]},
+
+                { "reference": "backstab", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "twinattack", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "knifeplay", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "mantledance", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+
+                { "reference": "feint", "forcedAbilities": [], "excludedAbilities": ["dominate","ironfist","sixthsense","tactician"], "includedAbilities": []}
+            ]
+        },
+        { 
+            "name": "{@generateNames[ambrian]}",
+            "race":"ambrian",
+            "occupation": "Resolute and quick mystic",
+            "attributes": {
+                "accurate":11,
+                "cunning":10,
+                "discreet":10,
+                "persuasive":7,
+                "quick":13,
+                "resolute":15,
+                "strong":9,
+                "vigilant":5
+            },
+            "excludedAbilities": [
+            ],
+            "includedAbilities": [ 
+                { "reference": "sorcery", "forcedAbilities": [], "excludedAbilities": ["wizardry","witchcraft","theurgy","trollsinging","symbolism","staffmagic"], 
+                        "includedAbilities": ["bendwill","blackbolt","blackbreath","blindingsymbol","curse","larvaeboil","retribution","revenantstrike","unholyaura"]},
+                { "reference": "theurgy", "forcedAbilities": [], "excludedAbilities": ["sorcery","wizardry","witchcraft","trollsinging","symbolism","staffmagic"], 
+                        "includedAbilities": ["anathema","blessedshield","holyaura","inheritwound","layonhands","levitate","priosburningglass","trueform","unnoticeable","witch Hammer"]},
+                { "reference": "wizardry", "forcedAbilities": [], "excludedAbilities": ["sorcery","witchcraft","theurgy","trollsinging","symbolism","staffmagic"], 
+                        "includedAbilities": ["anathema","bendwill","brimstonecascade","confusion","flamewall","illusorycorrection","levitate","mindthrow","trueform","unnoticeable"]},
+
+                { "reference": "stafffighting", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "knifeplay", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []}
+            ]
+        },    
+        { 
+            "name": "{@generateNames[ambrian]}",
+            "race":"ambrian",
+            "occupation": "Resolute and cunning mystic",
+            "attributes": {
+                "accurate":11,
+                "cunning":13,
+                "discreet":10,
+                "persuasive":7,
+                "quick":10,
+                "resolute":15,
+                "strong":9,
+                "vigilant":5
+            },
+            "excludedAbilities": [
+            ],
+            "includedAbilities": [ 
+                { "reference": "sorcery", "forcedAbilities": [], "excludedAbilities": ["wizardry","witchcraft","theurgy","trollsinging","symbolism","staffmagic"], 
+                        "includedAbilities": ["bendwill","blackbolt","blackbreath","blindingsymbol","curse","larvaeboil","retribution","revenantstrike","unholyaura"]},
+                { "reference": "theurgy", "forcedAbilities": [], "excludedAbilities": ["sorcery","wizardry","witchcraft","trollsinging","symbolism","staffmagic"], 
+                        "includedAbilities": ["anathema","blessedshield","holyaura","inheritwound","layonhands","levitate","priosburningglass","trueform","unnoticeable","witch Hammer"]},
+                { "reference": "wizardry", "forcedAbilities": [], "excludedAbilities": ["sorcery","witchcraft","theurgy","trollsinging","symbolism","staffmagic"], 
+                        "includedAbilities": ["anathema","bendwill","brimstonecascade","confusion","flamewall","illusorycorrection","levitate","mindthrow","trueform","unnoticeable"]},
+
+                { "reference": "loremaster", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},                        
+                { "reference": "stafffighting", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "tactician", "forcedAbilities": [], "excludedAbilities": ["dominate","feint","ironfist","sixthsense","twohandedforce"], "includedAbilities": []}
+            ]
+        }, 
+        { 
+            "name": "{@generateNames[ambrian]}",
+            "race":"ambrian",
+            "occupation": "Accurate and strong warrior",
+            "attributes": {
+                "accurate":15,
+                "cunning":10,
+                "discreet":9,
+                "persuasive":5,
+                "quick":11,
+                "resolute":10,
+                "strong":13,
+                "vigilant":7
+            },
+            "excludedAbilities": [
+    
+            ],
+            "includedAbilities": [ 
+                { "reference": "hammerrhythm", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "polearmmastery", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "shieldfighter", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "stafffighting", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "twinattack", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "twohandedfinesse", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "twohandedforce", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": ["twohandedfinesse"]},
+                { "reference": "whipfighter", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "wrestling", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "swordsaint", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","axeartist","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "axeartist", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+
+                { "reference": "knifeplay", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "ensnare", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "flailer", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "mantledance", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "marksman", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "rapidfire", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "arrowjab", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "steelthrow", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","arrowjab","rapidfire","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "strangler", "forcedAbilities": [], "excludedAbilities": ["axeartist","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+
+                { "reference": "ironfist", "forcedAbilities": [], "excludedAbilities": ["dominate","feint","sixthsense","tactician","backstab"], "includedAbilities": []}
+
+            ]
+        },
+        { 
+            "name": "{@generateNames[ambrian]}",
+            "race":"ambrian",
+            "occupation": "Persuasive and strong warrior",
+            "attributes": {
+                "accurate":7,
+                "cunning":9,
+                "discreet":5,
+                "persuasive":15,
+                "quick":10,
+                "resolute":11,
+                "strong":13,
+                "vigilant":10
+            },
+            "excludedAbilities": [
+            ],
+            "includedAbilities": [ 
+                { "reference": "hammerrhythm", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "polearmmastery", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "shieldfighter", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "stafffighting", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "twinattack", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "twohandedfinesse", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","wrestling","whipfighter","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "twohandedforce", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": ["twohandedfinesse"]},
+                { "reference": "wrestling", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","axeartist","swordsaint","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "swordsaint", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","axeartist","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "axeartist", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+
+                { "reference": "flailer", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "mantledance", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","arrowjab","rapidfire","marksman","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+
+                { "reference": "leader", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+                { "reference": "leader", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+
+                { "reference": "dominate", "forcedAbilities": [], "excludedAbilities": ["feint","ironfist","sixthsense","tactician"], "includedAbilities": []}
+            ]
+        },
+        { 
+            "name": "{@generateNames[ambrian]}",
+            "race":"ambrian",
+            "occupation": "Vigilant and quick ranged",
+            "attributes": {
+                "accurate":7,
+                "cunning":9,
+                "discreet":10,
+                "persuasive":5,
+                "quick":13,
+                "resolute":11,
+                "strong":10,
+                "vigilant":15
+            },
+            "excludedAbilities": [
+            ],
+            "includedAbilities": [ 
+                { "reference": "witchsight", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+                { "reference": "backstab", "forcedAbilities": [], "excludedAbilities": ["strangler","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","axeartist","swordsaint","wrestling","whipfighter","twohandedforce","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "marksman", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "rapidfire", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "arrowjab", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","steelthrow","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "steelthrow", "forcedAbilities": [], "excludedAbilities": ["axeartist","strangler","arrowjab","rapidfire","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "sixthsense", "forcedAbilities": [], "excludedAbilities": ["dominate","feint","ironfist","tactician","axeartist","strangler","steelthrow","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "sixthsense", "forcedAbilities": [], "excludedAbilities": ["dominate","feint","ironfist","tactician","axeartist","strangler","steelthrow","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []}
+            ]
+        },
+        { 
+            "name": "{@generateNames[ambrian]}",
+            "race":"ambrian",
+            "occupation": "Cunning and Resolute Mystic",
+            "attributes": {
+                "accurate":7,
+                "cunning":15,
+                "discreet":9,
+                "persuasive":5,
+                "quick":11,
+                "resolute":13,
+                "strong":10,
+                "vigilant":10
+            },
+            "excludedAbilities": [
+            ],
+            "includedAbilities": [ 
+                { "reference": "sorcery", "forcedAbilities": [], "excludedAbilities": ["wizardry","witchcraft","theurgy","trollsinging","symbolism","staffmagic"], 
+                        "includedAbilities": ["bendwill","blackbolt","blackbreath","blindingsymbol","curse","larvaeboil","retribution","revenantstrike","unholyaura"]},
+                { "reference": "theurgy", "forcedAbilities": [], "excludedAbilities": ["sorcery","wizardry","witchcraft","trollsinging","symbolism","staffmagic"], 
+                        "includedAbilities": ["anathema","blessedshield","holyaura","inheritwound","layonhands","levitate","priosburningglass","trueform","unnoticeable","witch Hammer"]},
+                { "reference": "wizardry", "forcedAbilities": [], "excludedAbilities": ["sorcery","witchcraft","theurgy","trollsinging","symbolism","staffmagic"], 
+                        "includedAbilities": ["anathema","bendwill","brimstonecascade","confusion","flamewall","illusorycorrection","levitate","mindthrow","trueform","unnoticeable"]},
+
+                { "reference": "loremaster", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+                { "reference": "strangler", "forcedAbilities": [], "excludedAbilities": ["axeartist","steelthrow","arrowjab","rapidfire","marksman","mantledance","flailer","knifeplay","backstab","swordsaint","wrestling","whipfighter","twohandedfinesse","twinattack","stafffighting","shieldfighter","polearmmastery", "hammerrhythm", "naturalwarrior"], "includedAbilities": []},
+                { "reference": "tactician", "forcedAbilities": [], "excludedAbilities": ["dominate","feint","ironfist","sixthsense","twohandedforce"], "includedAbilities": []}
+            ]
+        }     
+    ],
+
+    "abilities" : {
+        "core": {
+            "weight": 0,
+            "abilityRef": [
+            ]
+        },
+        "rare": {
+            "weight": 40,
+            "abilityRef": [
+                { "reference": "alchemy", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+                { "reference": "berserker", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+                { "reference": "bodyguard", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+                { "reference": "channeling", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+                { "reference": "leader", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+                { "reference": "opportunist", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+                { "reference": "poisoner", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+                { "reference": "pyrotechnics", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+                { "reference": "quickdraw", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+                { "reference": "siegeexpert", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+                { "reference": "witchsight", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []}
+            ]
+        },
+        "unusual": {
+            "weight": 60,
+            "abilityRef": [
+                { "reference": "acrobatics", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+                { "reference": "cheapshot", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},    
+                { "reference": "equestrian", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+                { "reference": "loremaster", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+                { "reference": "recovery", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+                { "reference": "steadfast", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []}
+        ]},
+        "common": {
+            "weight": 100,
+            "abilityRef": [
+                { "reference": "manatarms", "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": []},
+                { "reference": "medicus", "forcedAbilities": [], "excludedAbilities": ["blacksmith","trapper"], "includedAbilities": []},
+                { "reference": "blacksmith", "forcedAbilities": [], "excludedAbilities": ["medicus","trapper"], "includedAbilities": []},
+                { "reference": "trapper", "forcedAbilities": [], "excludedAbilities": ["blacksmith","medicus"], "includedAbilities": []}
+        ]}
+    },
+    
+    "images" : "modules/symbaroum-bithir-mod/assets/npcgeneration/ambrian"
+    
+}

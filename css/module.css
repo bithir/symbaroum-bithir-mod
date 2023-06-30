@@ -1,5 +1,26 @@
-.symbbithmod h1 {
+.bithirmod h1 {
   display: block;
+}
+
+.form-group.bithirmod .dialogHeader {
+  -ms-flex-preferred-size: auto;
+      flex-basis: auto;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.form-group.bithirmod .dialogEntry {
+  width: 10em;
+  min-width: 10em;
+}
+
+.form-group.bithirmod .inspirationInput {
+  width: 5em;
 }
 
 div .bithirmod .locationdie img {
