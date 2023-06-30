@@ -23,9 +23,14 @@ https://github.com/bithir/symbaroum-bithir-mod/releases/latest/download/module.j
 ### Release 0.1
 - [x] Initial creation
 
+### Licences
+[GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/)
+
+### Virtual Table Top Platform Licenses
+- Foundry VTT support is covered by the following license: [Limited License Agreement for module development 09/02/2020](https://foundryvtt.com/article/license/).
 
 ### Credits
 Midjourney images used from the "Non-Paid Members License Terms"", i.e. Creative Commons Noncommercial 4.0 Attribution International License - license see https://midjourney.gitbook.io/docs/billing.
 Images subject to this license are stored under assets/midjourney
 
-Game-icons images for the DsN dice - CC BY 3.0 see http://creativecommons.org/licenses/by/3.0/
+Game-icons images for the DsN dice created from https://game-icons.net - CC BY 3.0 see http://creativecommons.org/licenses/by/3.0/
