@@ -1,24 +1,19 @@
+# Symbaroum Bithir Mods
+
+This is a small module containing useful additions for the Symbaroum system.  It also serves as an example on how to use the Symbaroum API to plug in to the combat.
+
+The main features it has are:
+- A few uniqe community created abilities, most with direct integration in to the combat system
+- A NPC/Monster generator - which can on the fly generate Ambrians, Barbarians or Abominations
+- Inspiration dies - can be used as a GM tool to allow for inspiration when creating adventures and scenarios
+- Aroaleta verses - a mood setting chat tool, which can generate Aroaleta verses in the chat window
+- Shadow generation - can generate shadow descriptions automatically
+
+
 # How to use this module
 
 To install this module, copy the link below and paste into the module install dialogue in Foundry
 https://github.com/bithir/symbaroum-bithir-mod/releases/latest/download/module.json
-
-
-# Symbaroum Bithir Mods
-
-Abilities, traits and other expanded functions for the Symbaroum system - can be used as example.
-
-## Changelog
-### Release 1.3
-- [x] Initial creation of randomised Abominations [wip]
-### Release 0.6
-- [x] Compatibility with v10
-### Release 0.5
-- [x] Updated with compatibility to v9
-### Release 0.4
-- [x] [Restructure Ability and by extension all other items](https://github.com/bithir/symbaroum-bithir-mod/issues/8)
-- [x] [Change pause text to "Davokar Sleeps"](https://github.com/bithir/symbaroum-bithir-mod/issues/7)
-- [x] [Package abilities](https://github.com/bithir/symbaroum-bithir-mod/issues/6)
 
 ### Release 0.3
 - [x] First actual successful build
