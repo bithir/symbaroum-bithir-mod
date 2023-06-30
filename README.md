@@ -15,14 +15,6 @@ The main features it has are:
 To install this module, copy the link below and paste into the module install dialogue in Foundry
 https://github.com/bithir/symbaroum-bithir-mod/releases/latest/download/module.json
 
-### Release 0.3
-- [x] First actual successful build
-### Release 0.2
-- [x]  Testing builds
-
-### Release 0.1
-- [x] Initial creation
-
 ### Licences
 [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/)
 
