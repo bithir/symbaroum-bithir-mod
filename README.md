@@ -16,7 +16,7 @@ To install this module, copy the link below and paste into the module install di
 https://github.com/bithir/symbaroum-bithir-mod/releases/latest/download/module.json
 
 ### Licences
-[GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/)
+MIT Licence
 
 ### Virtual Table Top Platform Licenses
 - Foundry VTT support is covered by the following license: [Limited License Agreement for module development 09/02/2020](https://foundryvtt.com/article/license/).
