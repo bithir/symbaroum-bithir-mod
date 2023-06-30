@@ -23,6 +23,6 @@ https://github.com/bithir/symbaroum-bithir-mod/releases/latest/download/module.j
 
 ### Credits
 Midjourney images used from the "Non-Paid Members License Terms"", i.e. Creative Commons Noncommercial 4.0 Attribution International License - license see https://midjourney.gitbook.io/docs/billing.
-Images subject to this license are stored under assets/midjourney
+Images subject to this license are stored under assets/midjourney and assets/npcgeneration
 
 Game-icons images for the DsN dice created from https://game-icons.net - CC BY 3.0 see http://creativecommons.org/licenses/by/3.0/
