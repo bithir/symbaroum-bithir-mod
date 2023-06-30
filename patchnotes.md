@@ -1,5 +1,5 @@
 ## Changelog
-### Release 2.0
+### Release 3.0
 - [x] Release for foundry v11
 - [x] NPC/Monster generator finished - completing the Abmination generator work
 - [x] Added shadow generator
