@@ -28,7 +28,7 @@ export function getItemModifierBerserkerv2(combatMods, armors, weapons, abilitie
 
     for(let i = 0; i < armors.length; i++)
     {
-        if( armors[i].isNoArmor || armors[i].system.isStackableArmor) {
+        if( armors[i].system.isStackableArmor) {
             continue;
         }
         if(lvl.level > 1) {
