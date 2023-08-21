@@ -1,4 +1,7 @@
 ## Changelog
+
+### Release 3.2
+- [x] Added forest events
 ### Release 3.1
 - [x] Removed support for v10
 ### Release 3.0
