@@ -51,7 +51,6 @@
       "name": "bithir-mods",
       "label": "Bithir's mods",
       "system": "symbaroum",
-      "path": "packs/bithir-mods.db",
       "type": "Adventure",
       "module": "bithir-mods",
       "banner": "modules/symbaroum-bithir-mod/assets/midjourney/non-paid-scenery/compendium-banner.webp"
