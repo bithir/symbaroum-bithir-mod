@@ -1,17 +1,20 @@
-2023/08/21-18:36:29.098219 7f5b73fff6c0 Recovering log #137
-2023/08/21-18:36:29.278137 7f5b73fff6c0 Delete type=2 #44
-2023/08/21-18:36:29.278172 7f5b73fff6c0 Delete type=3 #45
-2023/08/21-18:36:29.278185 7f5b73fff6c0 Delete type=0 #132
-2023/08/21-18:36:29.278196 7f5b73fff6c0 Delete type=3 #135
-2023/08/21-18:36:29.278208 7f5b73fff6c0 Delete type=0 #137
-2023/08/21-18:36:29.278218 7f5b73fff6c0 Delete type=0 #47
-2023/08/21-18:36:29.278227 7f5b73fff6c0 Delete type=2 #49
-2023/08/21-18:36:29.278245 7f5b73fff6c0 Delete type=3 #130
-2023/08/21-18:36:29.278258 7f5b73fff6c0 Delete type=0 #42
-2023/08/21-18:36:29.278320 7f5b73fff6c0 Delete type=3 #40
-2023/08/21-18:36:29.278335 7f5b73fff6c0 Delete type=2 #134
-2023/08/21-18:37:29.264795 7f5b72ffd6c0 Level-0 table #143: started
-2023/08/21-18:37:29.264856 7f5b72ffd6c0 Level-0 table #143: 0 bytes OK
-2023/08/21-18:37:29.319019 7f5b72ffd6c0 Delete type=0 #141
-2023/08/21-18:37:29.372148 7f5b72ffd6c0 Manual compaction at level-0 from '!adventures!EOLvmewkCU75UStz' @ 72057594037927935 : 1 .. '!adventures!EOLvmewkCU75UStz' @ 0 : 0; will stop at (end)
-2023/08/21-18:37:29.372178 7f5b72ffd6c0 Manual compaction at level-1 from '!adventures!EOLvmewkCU75UStz' @ 72057594037927935 : 1 .. '!adventures!EOLvmewkCU75UStz' @ 0 : 0; will stop at (end)
+2023/08/21-18:47:39.893971 7f6796ffd6c0 Recovering log #146
+2023/08/21-18:47:40.251139 7f6796ffd6c0 Delete type=2 #44
+2023/08/21-18:47:40.251175 7f6796ffd6c0 Delete type=3 #45
+2023/08/21-18:47:40.251189 7f6796ffd6c0 Delete type=0 #132
+2023/08/21-18:47:40.251200 7f6796ffd6c0 Delete type=3 #135
+2023/08/21-18:47:40.251214 7f6796ffd6c0 Delete type=0 #137
+2023/08/21-18:47:40.251224 7f6796ffd6c0 Delete type=2 #139
+2023/08/21-18:47:40.251241 7f6796ffd6c0 Delete type=3 #144
+2023/08/21-18:47:40.251255 7f6796ffd6c0 Delete type=0 #47
+2023/08/21-18:47:40.251266 7f6796ffd6c0 Delete type=2 #49
+2023/08/21-18:47:40.251284 7f6796ffd6c0 Delete type=0 #146
+2023/08/21-18:47:40.251294 7f6796ffd6c0 Delete type=3 #130
+2023/08/21-18:47:40.251306 7f6796ffd6c0 Delete type=0 #42
+2023/08/21-18:47:40.251316 7f6796ffd6c0 Delete type=3 #40
+2023/08/21-18:47:40.251328 7f6796ffd6c0 Delete type=2 #134
+2023/08/21-18:49:43.978320 7f67967fc6c0 Level-0 table #152: started
+2023/08/21-18:49:43.978364 7f67967fc6c0 Level-0 table #152: 0 bytes OK
+2023/08/21-18:49:44.029248 7f67967fc6c0 Delete type=0 #150
+2023/08/21-18:49:44.071050 7f67967fc6c0 Manual compaction at level-0 from '!adventures!EOLvmewkCU75UStz' @ 72057594037927935 : 1 .. '!adventures!EOLvmewkCU75UStz' @ 0 : 0; will stop at (end)
+2023/08/21-18:49:44.071155 7f67967fc6c0 Manual compaction at level-1 from '!adventures!EOLvmewkCU75UStz' @ 72057594037927935 : 1 .. '!adventures!EOLvmewkCU75UStz' @ 0 : 0; will stop at (end)
