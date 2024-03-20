@@ -1,4 +1,6 @@
 ## Changelog
+### Release 3.3
+- [x] Minor corrections for color and display for inspiration dice
 
 ### Release 3.2.2
 - [x] Added forest events

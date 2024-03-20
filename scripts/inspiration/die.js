@@ -64,7 +64,7 @@ export class LocationDie extends InspirationDie {
             category: 'Symbaroum',
             foreground: '#000000',
             background: '#b9fb9d',
-            outline: '##268a19',
+            outline: '#268a19',
             texture: 'cloudy_2',
             edge: '#438e44',
         };
