@@ -4,9 +4,13 @@ export function getItemModifierBerserkerv2(combatMods, armors, weapons, abilitie
     // If no abilities have been learnt - abort
     if(lvl.level == 0) return;
 
+    if(!this.actor.getFlag(game.system.id, "berserkerv2") ) {
+        this.actor.removeCondition("berserkerv2");
+    }
+    
     /// Check if berserk is active on the character (actor)
     if (!this.actor.hasCondition("berserker") && !this.actor.getFlag(game.system.id, "berserker")) {
-        this.system.isIntegrated = false;
+        this.system.isIntegrated = false;        
         return;
     }
     // Check all weapons for melee weapons and if they are a melee weapon, add damage
