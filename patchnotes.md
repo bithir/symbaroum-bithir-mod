@@ -1,4 +1,8 @@
 ## Changelog
+
+### Release 3.4
+- [x] Fix to Berserker for v11
+
 ### Release 3.3
 - [x] Minor corrections for color and display for inspiration dice
 
