@@ -5,10 +5,10 @@ export function getItemModifierBerserkerv2(combatMods, armors, weapons, abilitie
     if(lvl.level == 0) return;
 
     /// Check if berserk is active on the character (actor)
-    if(!this.actor.getFlag(game.system.id, 'berserkerv2')) {
+    if (!this.actor.hasCondition("berserker") && !this.actor.getFlag(game.system.id, "berserker")) {
+        this.system.isIntegrated = false;
         return;
     }
-
     // Check all weapons for melee weapons and if they are a melee weapon, add damage
     for(let i = 0; i < weapons.length; i++)
     {
@@ -23,6 +23,7 @@ export function getItemModifierBerserkerv2(combatMods, armors, weapons, abilitie
             damageModNPC: 3,
         }];
         combatMods.weapons[weapons[i].id].package[0].member.push(base);
+        this.system.isIntegrated = true;
     }
 
 
@@ -36,9 +37,11 @@ export function getItemModifierBerserkerv2(combatMods, armors, weapons, abilitie
             base.type = base.type = game.symbaroum.config.DAM_DICEUPGRADE;
             base.diceUpgrade = 2;
             combatMods.armors[armors[i].id].protectionChoices.push(base);
+            this.system.isIntegrated = true;
         }
         if(lvl.level < 3) {
             combatMods.armors[armors[i].id].specialEffects.push(game.symbaroum.config.SPECIAL_MIN_DEFENSE);
+            this.system.isIntegrated = true;
         }
     }
 }
@@ -46,16 +49,16 @@ export function getItemModifierBerserkerv2(combatMods, armors, weapons, abilitie
 export function abilitySetupBerserkerv2(base) {
     base.casting = game.symbaroum.config.CASTING_NOT;
     base.gmOnlyChatResultNPC = true;
-    base.flagTest = "berserkerv2";
+    base.flagTest = "berserker";
     base.flagPresentFSmod = {
-        introText: game.i18n.localize('ABILITY_BERSERKER.CHAT_DESACTIVATE'),
-        resultTextSuccess: game.i18n.localize('ABILITY_BERSERKER.CHAT_RESULT_DESACTIVATE'),
-        removeCasterEffect: [CONFIG.statusEffects.find(e => e.id === "berserkerv2")]
+        introText: game.i18n.localize('ABILITY_BERSERKER.CHAT_DEACTIVATE'),
+        resultTextSuccess: game.i18n.localize('ABILITY_BERSERKER.CHAT_RESULT_DEACTIVATE'),
+        removeCasterEffect: [CONFIG.statusEffects.find(e => e.id === "berserker")]
     };
     base.flagNotPresentFSmod = {
         flagData: base.powerLvl.level,
         introText: game.i18n.localize('ABILITY_BERSERKER.CHAT_ACTIVATE'),
-        addCasterEffect: [CONFIG.statusEffects.find(e => e.id === "berserkerv2")]
+        addCasterEffect: [CONFIG.statusEffects.find(e => e.id === "berserker")]
     }    
     if(base.powerLvl.level == 2) base.flagNotPresentFSmod.resultTextSuccess = game.i18n.localize('ABILITY_BERSERKER.CHAT_RESULT_LVL2');
     else if(base.powerLvl.level > 2) base.flagNotPresentFSmod.resultTextSuccess = game.i18n.localize('ABILITY_BERSERKER.CHAT_RESULT_LVL3');
