@@ -48,12 +48,6 @@ Hooks.once('init', async function() {
 
 
     game.symbaroum.config.scriptedAbilities.push("berserkerv2");
-    CONFIG.statusEffects.push({
-        id: "berserkerv2",
-        label: "ABILITY_LABEL.BERSERKER",
-        icon: "systems/symbaroum/asset/image/berserker.svg"
-    });
-
     // Dice
     CONFIG.Dice.terms[LocationDie.DENOMINATION] = LocationDie;
     CONFIG.Dice.terms[EventDie.DENOMINATION] = EventDie;
