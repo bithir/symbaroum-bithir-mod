@@ -1,5 +1,8 @@
 ## Changelog
 
+### Release 3.5
+- [x] v12 compatibility
+
 ### Release 3.4
 - [x] Fix to Berserker for v11
 
