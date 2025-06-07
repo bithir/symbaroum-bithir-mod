@@ -388,7 +388,7 @@ export class BithirMacros
             <div style="display: flex;align-items: center;justify-content: center;"><span style="display:flex" class="symbaroum-mod fancyheader">&nbsp;</span></div>
         </blockquote>`;
         ChatMessage.create({
-            speaker: { alias: "Aroelata" },
+            speaker: { alias: "Aroaleta" },
             content: template
         });
     }
