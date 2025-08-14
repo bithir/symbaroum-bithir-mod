@@ -44,7 +44,7 @@ export class BithirApi
         };
 
         if(actor) {
-            let attribs = duplicate(game.symbaroum.config.attributes);
+            let attribs = foundry.utils.duplicate(game.symbaroum.config.attributes);
             attribs.sort( (a, b) => {
                 return actor.system.attributes[a].total - actor.system.attributes[b].total;
             })
@@ -89,7 +89,7 @@ export class BithirApi
                 console.error(`Found no matching table ${all} for str ${str}`);
                 return "";
             }
-            return (await table.roll()).results[0].text;
+            return (await table.roll()).results[0].name;
         });
         if(newStr == str) { return newStr; } else { return await this.parseSimpleElement(type,attributes,newStr)}; 
     }

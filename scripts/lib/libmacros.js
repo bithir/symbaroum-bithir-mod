@@ -6,7 +6,7 @@ export class BithirMacros
         const api = game.bithirmod.api;
         const generatorFileRegex = /.*\/(.*)-generator.json/;
         let generatorList = '';
-        const {files} = await FilePicker.browse("data", 'modules/symbaroum-bithir-mod/data/');
+        const {files} = await foundry.applications.apps.FilePicker.browse("data", 'modules/symbaroum-bithir-mod/data/');
         for(let i = 0; i < files.length; i++) {
             let mymatch = files[i].match(generatorFileRegex);
             if(mymatch == null ) { continue; }
@@ -75,7 +75,7 @@ export class BithirMacros
             // gender is masculine, feminine (can't do noble in any easy way)
             gender = `${config.randomElement(generatorConfig.gender)}`;
         }
-        const {files} = await FilePicker.browse("data", [generatorConfig.images, gender].join('/'));        
+        const {files} = await foundry.applications.apps.FilePicker.browse("data", [generatorConfig.images, gender].join('/'));        
 
         let name = '';
         // Use built-in generator (or not) - format is
@@ -112,7 +112,7 @@ export class BithirMacros
         foundry.utils.setProperty(actorDetails, "system.bio.occupation", statBlock.occupation ?? "");
 
         this.setAttributes(actorDetails, statBlock);
-        const roll = await new Roll(xpLevel.abilities).evaluate({async: true});
+        const roll = await new Roll(xpLevel.abilities).evaluate();
         let startCoreCount = roll.total;
         let actor = await Actor.create(actorDetails);
 
@@ -156,20 +156,35 @@ export class BithirMacros
         }
 
         let rarityModifier = 0;
+        let evalCounter = 0;
         while(currentXp < xpLevel.experience) {
-            game.symbaroum.log(`currentXp[${currentXp}] < xpLevel.experience[${xpLevel.experience}]`);
+            if(Object.keys(abilities).length <= 1 || evalCounter > 15000) { game.symbaroum.log(`Eval Breaking for exp loop`, abil); break; }
+            game.symbaroum.log(`currentXp[${currentXp}] < xpLevel.experience[${xpLevel.experience}]`,abilities);
             // Pick rarity (value between 1 and 111)
-            let rarity = Math.floor(Math.random()*(sumWeight))+1;            
+            let rarity = Math.floor(Math.random()*(sumWeight))+1;
+            
             // Sum up rarities, so that we know the whole span
             for(let abil in abilities) {
-                if(abil == "core" ) continue;
-                // game.symbaroum.log(`rarity[${rarity}] - abilities[${abil}].weight[${abilities[abil].weight}]`);
+                evalCounter++;
+                if(evalCounter > 15000) { game.symbaroum.log(`Eval Breaking for main loop`, abil); break; }
+                if(abil == "core") continue;
                 rarity -= abilities[abil].weight;
+
+                if(abilities[abil].abilityRef.length == 0) {
+                    // remove it
+                    sumWeight -= abilities[abil].weight;
+                    game.symbaroum.log(`Removing ${abil} - no items left`);
+                    delete abilities[abil];
+                    continue;                    
+                }
+
+                game.symbaroum.log(`rarity[${rarity}] - abilities[${abil}].weight[${abilities[abil].weight}]`);
                 if( rarity <= 0) {
                     // This is the rarity of the ability we want
                     // game.symbaroum.log(`Rarity ${abil} ability required`);
                     // Chosen ability
                     let chosenAbility = config.randomElement(abilities[abil].abilityRef);
+                    if(!chosenAbility || !chosenAbility.reference) { continue; }
                     let moreXp = this.addAbility(actorItems, chosenAbility);
                     currentXp += moreXp;
                     if(moreXp == 0) {
@@ -182,13 +197,13 @@ export class BithirMacros
                     }
                     // Add stuff
                     if(chosenAbility.includedAbilities.length > 0) {
-                        console.log('Will add included Abilities', chosenAbility);
-                        console.log('Pre values', abilities["common"].abilityRef);
+                        game.symbaroum.log('Will add included Abilities', chosenAbility);
+                        game.symbaroum.log('Pre values', abilities["common"].abilityRef);
                         let commonAbilities = abilities["common"].abilityRef;
                         abilities["common"].abilityRef = commonAbilities.concat(chosenAbility.includedAbilities.map( elem => {
                             return { "reference": elem, "forcedAbilities": [], "excludedAbilities": [], "includedAbilities": [], "includesItems":[] }
                         }));
-                        console.log('Post values', abilities["common"].abilityRef);
+                        game.symbaroum.log('Post values', abilities["common"].abilityRef);
                     }
                     break;
                 }
@@ -198,13 +213,13 @@ export class BithirMacros
         // item list to do magic
         const itemConfig = await foundry.utils.fetchJsonWithTimeout(`modules/symbaroum-bithir-mod/data/equipment.json`);
 
-        console.log('itemConfig',itemConfig,'actorItems',actorItems, "itemList", itemList)
+        game.symbaroum.log('itemConfig',itemConfig,'actorItems',actorItems, "itemList", itemList)
         for(let ability of actorItems) {
             if(itemConfig[ability.system.reference]) {
                 itemList = itemList.concat(itemConfig[ability.system.reference])
             }
         }
-        console.log('itemList',itemList);
+        game.symbaroum.log('itemList',itemList);
 
         let armorAdded = false;
         for(let itemdesc of itemList) {
@@ -219,14 +234,14 @@ export class BithirMacros
                 let itemToAdd = null;
                 let name = null;
                 for(let tr of tableDraw.results) {
-                    if(tr.documentCollection == 'Item') {
-                        itemToAdd = duplicate(game.items.get(tr.documentId));
-                    } else if(tr.documentId == null) {
-                        name = tr.text;
+                    if(tr.documentUuid) {
+                        itemToAdd = (await fromUuid(tr.documentUuid)).toObject();
+                    } else {
+                        name = tr.name;
                     }
                 }
                 if(!itemToAdd) {
-                    console.log(`Can't locate item from table results of ${itemdesc} in table`, tableDraw);
+                    game.symbaroum.log(`Can't locate item from table results of ${itemdesc} in table`, tableDraw);
                 }
                 if(name) {
                     foundry.utils.setProperty(itemToAdd, "name", (await game.bithirmod.api.parseSimpleElement(generatorConfig.shadow,{},name)).capitalize() );
@@ -235,7 +250,7 @@ export class BithirMacros
                     itemToAdd.system.state = "active";
                     armorAdded = true;
                 }
-                console.log("Adding item",itemToAdd);
+                game.symbaroum.log("Adding item",itemToAdd);
                 actorItems.push(itemToAdd);
             } else {
                 let match = itemdesc.match(/(?<number>[^]*)@(?<nameReg>.*)/);
@@ -254,14 +269,14 @@ export class BithirMacros
                     return false;
                 })                
                 if(itemPick.length == 0) {
-                    console.log(`Can't find matching item in the Foundry item catalogue for ${itemdesc}`);
+                    game.symbaroum.log(`Can't find matching item in the Foundry item catalogue for ${itemdesc}`);
                     continue;
                 }
                 let roll = await new Roll(number).evaluate();
                 let r = roll.total;
 
                 for(let i = 0; i < r; i++) {
-                    let itemToAdd =  duplicate(config.randomElement(itemPick));                    
+                    let itemToAdd =  config.randomElement(itemPick)?.toObject();                    
                     if(itemToAdd.type == 'weapon' || itemToAdd.type == 'armor' && !armorAdded) {
                         foundry.utils.setProperty(itemToAdd, "system.state", "active");
                         armorAdded = true;
@@ -276,8 +291,8 @@ export class BithirMacros
         let healMe = {_id:actor.id};
         const myShadow = await game.bithirmod.api.generateShadow(generatorConfig.shadow, actor);        
         foundry.utils.setProperty(healMe, "system.bio.shadow", myShadow.capitalize() );
-        foundry.utils.setProperty(healMe, "system.health.toughness.value", getProperty(actor, "system.health.toughness.max") );
-        foundry.utils.setProperty(healMe, "system.experience.total", getProperty(actor, "system.experience.spent") );
+        foundry.utils.setProperty(healMe, "system.health.toughness.value", foundry.utils.getProperty(actor, "system.health.toughness.max") );
+        foundry.utils.setProperty(healMe, "system.experience.total", foundry.utils.getProperty(actor, "system.experience.spent") );
         await Actor.updateDocuments([healMe]);
         actor.sheet.render(true);
     }
@@ -293,13 +308,16 @@ export class BithirMacros
     addAbility(actorItems, ability) {
         // game.symbaroum.log(`Looking for ability[${ability.reference}]`);
         // Should check if the ability is already present, and if so, just increase it one point
+        if(!ability || !ability.reference) {
+            game.symbaroum.log("No ability with reference", ability);
+            return 0;
+        }
         let selectedAbility = actorItems.find(elem => elem.system.reference == ability.reference);
-        
         // If it is not present, add a new ability
         if(!selectedAbility) {
             const newAbility = game.items.filter(element => element.system.reference == ability.reference && element.system.isPower && element.system.hasLevels);
             if(newAbility.length > 0) {
-                selectedAbility = duplicate(newAbility[0]);
+                selectedAbility = newAbility[0].toObject();
                 game.symbaroum.log(`Retriveved[${selectedAbility.name}] from the item catalogue`);
                 let rnd = Math.floor(Math.random()*100);
                 let level = rnd > 95 ? 3: rnd > 70 ? 2 : 1;
@@ -436,12 +454,12 @@ export class BithirMacros
                                                     rollString.push(`${reward}dr`);
                                                 }
                                                 console.log("RollString "+ rollString.join('+'));
-                                                let rolls = await new Roll(rollString.join('+')).evaluate({async:true});
+                                                let rolls = await new Roll(rollString.join('+')).evaluate();
                                                 let rollData = {
                                                     formula: rolls.formula,
                                                     rolls: this.assembleInspirationResults(rolls)
                                                 }
-                                                const template = await renderTemplate(`${game.bithirmod.config.templatePath}/inspirationroll.hbs`, rollData);
+                                                const template = await foundry.applications.handlebars.renderTemplate(`${game.bithirmod.config.templatePath}/inspirationroll.hbs`, rollData);
 
                                                 // Once we go to non-API version of DsN, then set this in chatData: type: CONST.CHAT_MESSAGE_TYPES.ROLL,
                                                 let chatData = {
@@ -449,8 +467,8 @@ export class BithirMacros
                                                     speaker: ChatMessage.getSpeaker({ 
                                                     alias: api.localize('inspiration_results')
                                                     }),
-                                                    type: CONST.CHAT_MESSAGE_TYPES.ROLL,
                                                     roll: JSON.stringify(rolls),
+                                                    rolls: [rolls],
                                                     rollMode: game.settings.get('core', 'rollMode'),
                                                     content: template,
                                                 };

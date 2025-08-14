@@ -6,12 +6,12 @@
   "version": "#{VERSION}#",
   "library": "false",
   "manifestPlusVersion": "1.0.0",  
-  "minimumCoreVersion": 11,
-  "compatibleCoreVersion": 11,
+  "minimumCoreVersion": 13,
+  "compatibleCoreVersion": 13,
   "compatibility": {
-    "minimum": 11,
-    "verified": 12,
-    "maximum": 12
+    "minimum": 13,
+    "verified": 13,
+    "maximum": 13
   },
   "authors": [
     {

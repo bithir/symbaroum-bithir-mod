@@ -1,4 +1,4 @@
-export class InspirationDie extends Die {    
+export class InspirationDie extends foundry.dice.terms.Die {    
     constructor(termData) {
         termData.faces=6;
         super(termData);
