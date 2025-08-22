@@ -1,5 +1,8 @@
 ## Changelog
 
+### Release 4.0
+- [x] Release for foundry v13 
+
 ### Release 3.5
 - [x] v12 compatibility
 
