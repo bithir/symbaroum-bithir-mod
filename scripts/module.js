@@ -172,6 +172,7 @@ Hooks.on('renderActorSheet', (app, html, data) => {
                         }
                         // generate shadow
                         const newShadow = await api.generateShadow(selectedShadow, actor);
+                        console.log(`New shadow is ${newShadow}`);
                         actor.update({'system.bio.shadow':newShadow.capitalize() });
                     }
                 }

@@ -1,5 +1,8 @@
 ## Changelog
 
+### Release 4.1
+ - [x] Fix to shadow #19
+
 ### Release 4.0
 - [x] Release for foundry v13 
 

@@ -37,6 +37,7 @@ export class BithirApi
             console.log(`Trying to generate a shadow for a type (corrupt, civilised, natural) that does not exist - type[${type}]`);
             return;
         }
+        console.log(`Trying to generate a shadow for a type[${type}]`);
         // Lets go with making actor optional - if it is undefined, select "random" attributes
         let attributes = {
             primaryattribute : game.bithirmod.config.randomElement(game.symbaroum.config.attributes),
@@ -58,6 +59,7 @@ export class BithirApi
             attributes.secondaryattribute = attribs.pop();
             console.log('attributes',attributes);
         }        
+        console.log("")
         return await this.parseSimpleElement(type, attributes,`{#${type}-base}`);
     }
 
@@ -81,15 +83,15 @@ export class BithirApi
                 table = game.tables.find( f => f.name.match(`${type}.*-${attributes[all.slice(1)]}`));
             }
             if(all.charAt(0) == '#') {
-                // table
+                // table                
                 table = game.tables.getName(all.slice(1));
-
+                console.log(`Found table ${all.slice(1)}`,table);
             }
             if(!table) {
                 console.error(`Found no matching table ${all} for str ${str}`);
                 return "";
             }
-            return (await table.roll()).results[0].name;
+            return (await table.roll()).results[0].description;
         });
         if(newStr == str) { return newStr; } else { return await this.parseSimpleElement(type,attributes,newStr)}; 
     }
